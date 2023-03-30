@@ -1,0 +1,585 @@
+<!--#UTF-8--><!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE>CGDB 中文使用手册及命令大全 -  手册 - 时代Java</TITLE>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/docs/common/docs.css"/></HEAD>
+<BODY style="padding-top:96px;"><div class="nj-nav">				<div class="nj-nav-mod nj-nav-mod-pc nj-nav-white">					<div id="qcTopNavFstLevel" class="J-headerTop nj-nav-top">						<a href="https://nowjava.com" target="_blank" class="nj-nav-all-trigger"><span class="nj-nav-all-trigger-text">学习从现在开始 - 时代Java，与您同行！</span></a>					</div>					<div class="J-headerBottom nj-nav-bottom responsive">						<a href="https://nowjava.com" target="_blank" class="nj-nav-project-logo"><i class="nj-nav-project-bg-logo">时代Java</i></a>						<div class="nj-nav-bm-categories">							<ul class="nj-nav-list">								<li class="presentation"><a href="https://nowjava.com" target="_blank" role="button">首页</a></li>								<li class="presentation"><a href="https://nowjava.com/book" target="_blank" role="button">集册</a></li>								<li class="presentation"><a href="https://nowjava.com/article" target="_blank" role="button" >文章</a></li>								<li class="presentation"><a href="https://nowjava.com/example" target="_blank" role="button">实例</a></li>								<li class="presentation"><a href="https://nowjava.com/news" target="_blank" role="button" >快讯</a></li>								<li class="presentation"><a href="https://nowjava.com/we" target="_blank" role="button" >时代+</a></li>								<li class="presentation"><a href="https://nowjava.com/manual" target="_blank" role="button">手册</a></li>								<!-- 								<li class="presentation split-item"></li>								<li class="presentation"><a href="https://nowjava.com" target="_blank" role="button">Java</a></li>								<li class="presentation"><a href="https://nowjava.com" target="_blank" role="button">Spring</a></li>								<li class="presentation"><a href="https://nowjava.com" target="_blank" role="button">JavaScript</a></li>								<li class="presentation"><a href="https://nowjava.com" target="_blank" role="button">jQuery</a></li>								<li class="presentation"><a href="https://nowjava.com" target="_blank" role="button">CSS</a></li>								<li class="presentation"><a href="https://nowjava.com" target="_blank" role="button">SQL</a></li>								<li class="presentation"><a href="https://nowjava.com" target="_blank" role="button">MySQL</a></li>								 -->							</ul>						</div>					</div>				</div>			</div>			
+<meta charset="utf-8">
+<a name="SUMMARY"></a>
+<h1>目录</h1>
+<ul>
+<li><a href="#summary_of_cgdb">CGDB简介</a></li>
+<li><a href="#1.0">1 打开和关闭CGDB</a></li>
+<li><a href="#2.0">2 理解CGDB的几个核心概念</a></li>
+<li><a href="#2.1">2.1 理解代码窗口</a></li>
+<li><a href="#2.2">2.2 理解GDB窗口</a></li>
+<li><a href="#2.3">2.3 理解文件对话框窗口</a></li>
+<li><a href="#2.4">2.4 理解TTY窗口</a></li>
+<li><a href="#2.5">2.5 理解状态栏</a></li>
+<li><a href="#2.6">2.6 在不同的窗口中切换</a></li>
+<li><a href="#3.0">3 CGDB命令</a></li>
+<li><a href="#3.1">3.1 CGDB模式中的命令</a></li>
+<li><a href="#3.2">3.2 GDB模式中的命令</a></li>
+<li><a href="#3.3">3.3 文件对话框模式中的命令</a></li>
+<li><a href="#3.4">3.4 TTY模式中的命令</a></li>
+<li><a href="#4.0">4 CGDB配置命令</a></li>
+<li><a href="#5.0">5 CGDB高亮组</a></li>
+<li><a href="#5.1">5.1 不同的高亮组</a></li>
+<li><a href="#5.2">5.2 不同的属性</a></li>
+<li><a href="#5.3">5.3 不同的颜色</a></li>
+<li><a href="#6.0">6 CGDB键盘用户接口</a></li>
+<li><a href="#6.1">6.1 KUI超时选项</a></li>
+<li><a href="#6.2">6.2 使用映射</a></li>
+<li><a href="#6.3">6.3 键码</a></li>
+<li><a href="#7.0">7 对被调试的程序进行I/O操作</a></li>
+</ul><a name="summary"></a>
+<h1>目录</h1>
+<ul>
+<li><a href="#summary_of_cgdb">CGDB简介</a></li>
+<li><a href="#1.0">1 打开和关闭CGDB</a></li>
+<li><a href="#2.0">2 理解CGDB的几个核心概念</a></li>
+<li><a href="#2.1">2.1 理解代码窗口</a></li>
+<li><a href="#2.2">2.2 理解GDB窗口</a></li>
+<li><a href="#2.3">2.3 理解文件对话框窗口</a></li>
+<li><a href="#2.4">2.4 理解TTY窗口</a></li>
+<li><a href="#2.5">2.5 理解状态栏</a></li>
+<li><a href="#2.6">2.6 在不同的窗口中切换</a></li>
+<li><a href="#3.0">3 CGDB命令</a></li>
+<li><a href="#3.1">3.1 CGDB模式中的命令</a></li>
+<li><a href="#3.2">3.2 GDB模式中的命令</a></li>
+<li><a href="#3.3">3.3 文件对话框模式中的命令</a></li>
+<li><a href="#3.4">3.4 TTY模式中的命令</a></li>
+<li><a href="#4.0">4 CGDB配置命令</a></li>
+<li><a href="#5.0">5 CGDB高亮组</a></li>
+<li><a href="#5.1">5.1 不同的高亮组</a></li>
+<li><a href="#5.2">5.2 不同的属性</a></li>
+<li><a href="#5.3">5.3 不同的颜色</a></li>
+<li><a href="#6.0">6 CGDB键盘用户接口</a></li>
+<li><a href="#6.1">6.1 KUI超时选项</a></li>
+<li><a href="#6.2">6.2 使用映射</a></li>
+<li><a href="#6.3">6.3 键码</a></li>
+<li><a href="#7.0">7 对被调试的程序进行I/O操作</a></li>
+</ul><a name="1.0"></a>
+<p>上一章：<a href="#summary_of_cgdb">CGDB简介</a>，下一章：<a href="#2.0">理解CGDB的几个核心概念</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h1>1 打开和关闭CGDB</h1>
+<p>本章讨论的是如何进入和退出CGDB。有如下几种方法：</p>
+<ul>
+<li>在命令行下输入 <em>'cgdb'</em> 运行CGDB</li>
+<li>在GDB窗口输入 <em>'quit'</em> 或者按下 <em>'Ctrl+D'</em> 退出CGDB</li>
+<li>在源代码窗口输入 <em>':quit'</em> 也可以退出CGDB。这在GDB挂起或者运行一条耗时很长的指令时也同样起作用</li>
+</ul><a name="2.0"></a>
+<p>上一章：<a href="#1.0">打开和关闭CGDB</a>，下一节：<a href="#2.1">理解代码窗口</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h1>2 理解CGDB的几个核心概念</h1>
+<p>CGDB的界面默认由两个窗口和一条状态栏组成。代码窗口默认在上方，GDB窗口默认在下方。状态栏在两个窗口之间。</p>
+<p>根据不同窗口的激活情况，CGDB有不同的模式。当代码窗口被激活时，CGDB处于CGDB模式。当GDB窗口被激活时，CGDB处于GDB模式。当TTY窗口被激活时，CGDB处于TTY模式。</p>
+<p>当CGDB发布1.0的版本时，所有的窗口将会是可移动的，用户可以创建想要的窗口，个数不限。但是目前我的时间都花在了开发CGDB和GDB之间的接口上。当这部分完成的时候，CGDB的界面会变得更完美。如果你是一个熟悉ncurses的开发者，并且有业余时间来做这部分工作的话，请联系我。</p><a name="2.1"></a>
+<p>上一节：<a href="#2.0">理解CGDB的几个核心概念</a>，下一节：<a href="#2.2">理解GDB窗口</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>2.1 理解代码窗口</h2>
+<p>您可以通过代码窗口查看当前被调试程序的源代码。CGDB只能同时显示一个源文件。当用户调试程序的时候，通过 <em>next</em> 和 <em>step</em> 命令，CGDB将会更新源代码以及行号，以此提醒您调试进行到了何处。</p>
+<p>CGDB有几个新特性能让调试比使用旧的GDB更方便。其中，当您在调试C，C++或ADA程序的时候，源代码是高亮的。这个特性可以让您更加快速的找到源文件中的特定代码。如果您需要让CGDB在调试其他语言程序的时候能够显示代码高亮，请联系我们。一些代码窗口的使用命令参见<a href="#3.1">3.1节</a>。</p>
+<p>除了显示源代码，CGDB也显示当前运行的代码行。当前被GDB运行的代码行的行号被高亮成绿色，同时CGDB也在这一行的行号前显示一个箭头。您可以通过配置选项 <em>':set arrowstyle'</em> 来配置箭头的样式。默认的情况下，使用值 <em>short</em> 配置的短箭头生效。但是我个人更加喜欢使用值 <em>long</em> 配置的长箭头。</p>
+<p>当您浏览代码窗口时，光标所在行的行号被高亮成了白色。它使得您可以知道光标处在当前文件的什么位置。</p>
+<p>您可以通过CGDB的代码窗口设置或者取消一个断点。浏览至您需要设置断点的行，然后按下空格键，断点就会被设置。当断点成功被设置时，行号会被标红。再按下一次空格键断点就会被取消。当断点被禁用的时候，行号会被标黄。</p>
+<p>CGDB还支持在代码窗口中使用正则表达式搜索源代码。您可以按下 <em>/</em> 或者 <em>?</em>，然后加上您要搜索的字符串或者是正则表达式。这里的搜索使用的是C语言的正则表达式库，使得在搜索 <em>'*'</em> 或 <em>'+'</em> 时表现的更快。</p>
+<p>代码窗口中可使用的全部命令的列表在<a href="#3.1">3.1节</a>。</p><a name="2.2"></a>
+<p>上一节：<a href="#2.1">理解代码窗口</a>，下一节：<a href="#2.3">理解文件对话框窗口</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>2.2 理解GDB窗口</h2>
+<p>CGDB通过GDB窗口让用户直接操作gdb。如果您想要将一个命令发送给gdb，只要将命令输入进GDB窗口即可。使用CGDB中的GDB窗口和在命令行下使用gdb是完全一样的。</p>
+<p>在这个窗口中输入的一部分快捷键会被CGDB截获并处理，而非直接发送给gdb。这些快捷键的列表在<a href="#3.2">3.2节</a></p>
+<p>类似于终端操作，CGDB将会将您连续输入的多个命令缓存起来。因此当您在一个命令完成之前又输入了多个其他的命令，这些命令会被CGDB按照顺序依次执行。就像在gdb中调试一样，除非按下 <em>Ctrl-C</em> ，否则缓存的命令不会被停止执行。</p><a name="2.3"></a>
+<p>上一节：<a href="#2.2">理解GDB窗口</a>，下一节：<a href="#2.4">理解TTY窗口</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>2.3 理解文件对话框窗口</h2>
+<p>通过文件对话框窗口，用户可以浏览和选择他们想要查看的文件。它为用户提供了一个与被调试程序有关的所有源代码文件的列表。如果没有文件被显示，可能是因为没有程序正在被调试，或者是因为被调试的可执行程序中没有调试信息，在这些情况下，文件对话框窗口不会打开，状态栏上会显示一条错误信息。</p>
+<p>您可以通过在代码窗口中键入 <em>o</em> 来打开文件对话框窗口。当您打开了文件对话框窗口后，需要通过键入 <em>q</em> 来关闭它。您可以通过方向键来选择您想要的文件，甚至可以使用正则表达式去搜索文件。在文件数量越来越多的情况下，这个功能可以省去您很多的时间。</p>
+<p>文件对话框窗口中可使用的全部命令的列表在<a href="#3.3">3.3节</a>。</p><a name="2.4"></a>
+<p>上一节：<a href="#2.3">理解文件对话框窗口</a>，下一节：<a href="#2.5">理解状态栏</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>2.4 理解TTY窗口</h2>
+<p>用户可以通过TTY窗口将程序的输入传给被调试的程序。这个窗口与GDB窗口类似，除了在TTY窗口中输入的数据将被直接传给被调试的程序。参见<a href="#7.0">第七章</a>。</p>
+<p>您会看到，在TTY窗口和被调试的程序窗口之间有一个tty设备。因此如果被调试的程序使用readline等行缓冲输入，则命令行输入是可以被编辑的。这个tty设备也会被通过TTY窗口当作程序的终端输出。您可以在TTY窗口和GDB窗口之间看到这个tty设备的名字。</p>
+<p>TTY窗口中可使用的全部命令的列表在<a href="#3.4">3.4节</a>。</p>
+<p>对被调试的程序进行的I/O容易让人迷惑。这部分在<a href="#7.0">第七章</a>有更好的解释。除非被调试的程序的I/O比较简单，否则我通常都会选择在另外一个终端启动被调试程序，然后在CGDB中连接上被调试程序。</p><a name="2.5"></a>
+<p>上一节：<a href="#2.4">理解TTY窗口</a>，下一节：<a href="#2.6">在不同的窗口中切换</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>2.5 理解状态栏</h2>
+<p>状态栏是CGDB向用户显示正在输入的命令和当错误发生时报告错误的最通用的方式。CGDB不使用弹窗和其它形式的输出来告知用户信息或有错误发生。</p>
+<p>当CGDB运行的时候，您可以通过任何在CGDB配置文件中有效的配置命令去配置CGDB。只需要代码窗口键入 <em>:</em> 您就可以看见一个冒号出现在状态栏中，此后输入的命令也会被显示在状态栏中。当您输入了您想要执行的命令后，键入 <em>enter</em> 。这将会让CGDB运行您之前键入的命令。如果您在输入命令的时候想要取消您输入的内容，可以按下CGDB的模式选择键。这样做会让您回到CGDB模式。更详细的关于CGDB的模式选择键参见<a href="#2.6">2.6节</a>。</p>
+<p>状态栏中可使用的全部命令的列表在<a href="#4.0">第4章</a>。</p><a name="2.6"></a>
+<p>上一节：<a href="#2.5">理解状态栏</a>，下一章：<a href="#3.0">CGDB命令</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>2.6 在不同的窗口中切换</h2>
+<p>当CGDB最初运行时，CGDB默认处于GDB模式。状态栏右侧的 <em>*</em> 符号显示当前的输入会被传入GDB窗口。按下 <em>ESC</em> 键可切换至代码窗口，CGDB模式切换键是将用户从别的模式切换到CGDB模式的快捷键，默认的CGDB模式切换键是 <em>ESC</em> 。如果您想改变CGDB模式切换键对应的快捷键，请查阅CGDB的配置选项。参见<a href="#4.0">第4章</a>。</p>
+<p>现在CGDB处于CGDB模式。要切换回GDB模式，键入 <em>i</em> 。这个设置是基于最流行的Unix文本编辑器：vi。</p><a name="3.0"></a>
+<p>上一节：<a href="#2.6">在不同的窗口中切换</a>，下一节：<a href="#3.1">CGDB模式中的命令</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h1>3 CGDB命令</h1>
+<p>您可以通过多种方式控制CGDB。每个模式下有不同的控制CGDB的方式。目前CGDB会根据哪一个窗口被激活，隐式的切换到对应模式。接下来您将会看到不同模式中可以使用的一些命令。</p><a name="3.1"></a>
+<p>上一节：<a href="#3.0">CGDB命令</a>，下一节：<a href="#3.2">GDB模式中的命令</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>3.1 CGDB模式中的命令</h2>
+<p>当您处于代码窗口时，您已经处于CGDB模式中。本节中所有的命令在这个模式中都起作用。这个模式主要是让用户可以浏览当前调试的源代码文件，进行搜索和切换到别的模式中。</p>
+<p><code>cgdbmodekey</code><br />
+让用户进入命令模式。但是，处于CGDB模式中代表您已经在此模式。这个按键默认为 <em>ESC</em> 键</p>
+<p><code>i</code><br />
+让用户进入GDB模式</p>
+<p><code>I</code><br />
+让用户进入TTY模式</p>
+<p><code>T</code><br />
+打开一个窗口并将输入传递给被调试的程序</p>
+<p><code>Ctrl+T</code><br />
+为被调试程序打开一个新的tty</p>
+<p><code>k</code><br />
+<code>up arrow</code><br />
+向上移动一行</p>
+<p><code>j</code><br />
+<code>down arrow</code><br />
+向下移动一行</p>
+<p><code>h</code><br />
+<code>left arrow</code><br />
+向左移动一列</p>
+<p><code>l</code><br />
+<code>right arrow</code><br />
+向右移动一列</p>
+<p><code>Ctrl-b</code><br />
+<code>page up</code><br />
+向上翻一页</p>
+<p><code>Ctrl-u</code><br />
+向上翻半页</p>
+<p><code>Ctrl-f</code><br />
+<code>page down</code><br />
+向下翻一页</p>
+<p><code>Ctrl-d</code><br />
+向下翻半页</p>
+<p><code>gg</code><br />
+移动到文件顶部</p>
+<p><code>G</code><br />
+移动到文件底部</p>
+<p><code>/</code><br />
+从当前光标处向下搜索</p>
+<p><code>?</code><br />
+从当前光标处向上搜索</p>
+<p><code>n</code><br />
+继续向下搜索</p>
+<p><code>N</code><br />
+继续向上搜索</p>
+<p><code>o</code><br />
+打开文件对话框窗口</p>
+<p><code>spacebar</code><br />
+在当前行设置断点</p>
+<p><code>t</code><br />
+在当前行设置一个临时断点</p>
+<p><code>-</code><br />
+将代码窗口缩小一行</p>
+<p><code>=</code><br />
+将代码窗口增大一行</p>
+<p><code>_</code><br />
+将代码窗口缩小25%（当TTY窗口显示的时候，将TTY窗口缩小一行）</p>
+<p><code>+</code><br />
+将代码窗口增大25%（当TTY窗口显示的时候，将TTY窗口增大一行）</p>
+<p><code>Ctrl-l</code><br />
+清屏并重绘</p>
+<p><code>F5</code><br />
+发送一个run命令至GDB</p>
+<p><code>F6</code><br />
+发送一个continue命令至GDB</p>
+<p><code>F7</code><br />
+发送一个finish命令至GDB</p>
+<p><code>F8</code><br />
+发送一个next命令至GDB</p>
+<p><code>F10</code><br />
+发送一个step命令至GDB</p><a name="3.2"></a>
+<p>上一节：<a href="#3.1">CGDB模式中的命令</a>，下一节：<a href="#3.3">文件对话框模式中的命令</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>3.2 GDB模式中的命令</h2>
+<p>在GDB模式中，用户最常关注的是GDB控制台的使用。也就是向GDB发送命令与接受GDB返回的消息。几乎所有传入这个窗口的数据都是直接发送给readline缓冲区，然后发送给GDB。</p>
+<p>CGDB会首先对关心的按键输入进行处理，然后再将其余的发送给GDB，理解这点是非常重要的。CGDB会处理一些它关心的按键输入。以下是CGDB会首先处理的按键，而且这些按键输入并不会被继续传递给GDB。</p>
+<p><code>cgdbmodekey</code><br />
+切换至代码窗口。这个按键默认为 <em>ESC</em> 键</p>
+<p><code>page up</code>
+向上翻一页</p>
+<p><code>page down</code><br />
+向下翻一页</p>
+<p><code>F11</code><br />
+移动到GDB输出的头部</p>
+<p><code>F12</code><br />
+移动到GDB输出的尾部</p>
+<p>对于除了以上列出的其他输入，CGDB目前并不关心。CGDB将会直接将这些输入传递给readline库。当readline判断接收到一个命令时，它将通知CGDB并且将命令发送给GDB。这和直接使用GDB使用的处理方法是一样的。</p><a name="3.3"></a>
+<p>上一节：<a href="#3.2">GDB模式中的命令</a>，下一节：<a href="#3.4">TTY模式中的命令</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>3.3 文件对话框模式中的命令</h2>
+<p>文件对话框主要用来让用户查找和打开被调试程序的源代码文件。文件对话框是全屏的，且会将每个被调试程序的源代码文件都列出。一个常见的文件对话框会在源代码窗口按下 <em>o</em> 键时被打开，然后可以搜索相关的文件。比如，如果您在查找 <em>foo.c</em>，可以输入 <em>/foo.c</em>，然后按下回车键结束正则表达式的输入，选择您需要的文件。</p>
+<p>在文件对话框模式中可用的命令如下：</p>
+<p><code>q</code><br />
+将会退出文件对话框并返回代码窗口</p>
+<p><code>k</code><br />
+<code>up arrow</code><br />
+向上移动一行</p>
+<p><code>j</code><br />
+<code>down arrow</code><br />
+向下移动一行</p>
+<p><code>h</code><br />
+<code>left arrow</code><br />
+向左移动一行</p>
+<p><code>l</code><br />
+<code>right arrow</code><br />
+向右移动一行</p>
+<p><code>Ctrl-b</code><br />
+<code>page up</code><br />
+向上翻一页</p>
+<p><code>Ctrl-f</code>
+<code>page down</code><br />
+向下翻一页</p>
+<p><code>/</code><br />
+从当前光标处向下搜索</p>
+<p><code>?</code><br />
+从当前光标处向上搜索</p>
+<p><code>n</code><br />
+继续向下搜索</p>
+<p><code>N</code><br />
+继续向上搜索</p>
+<p><code>enter</code><br />
+选择当前的文件</p><a name="3.4"></a>
+<p>上一节：<a href="#3.3">文件对话框模式中的命令</a>，下一章：<a href="#4.0">CGDB配置命令</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>3.4 TTY模式中的命令</h2>
+<p><code>cgdbmodekey</code><br />
+返回代码窗口。这个按键默认为 <em>ESC</em> 键</p>
+<p><code>page up</code><br />
+向上翻一页</p>
+<p><code>page down</code><br />
+向下翻一页</p>
+<p><code>F11</code><br />
+移动到GDB输出的头部</p>
+<p><code>F12</code><br />
+移动到GDB输出的尾部</p><a name="4.0"></a>
+<p>上一节：<a href="#3.4">TTY模式中的命令</a>，下一章：<a href="#5.0">CGDB高亮组</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h1>4 CGDB配置命令</h1>
+<p>您可能会觉得CGDB中的一些特性比较有用。CGDB可以通过一个叫做 <em>cgdbrc</em> 的文件自动加载CGDB的命令。CGDB将会在 <em>$HOME/.cgdb/</em> 目录下查找这个文件。如果这个文件存在的话，CGDB将会依次运行这个文件中的每一行。这和用户在tui初始化后在状态栏输入所有的命令是一样的。</p>
+<p>下列变量改变了CGDB一些方面的行为。其中有些命令是缩写，所有的布尔命令都可能通过在命令前添加 <em>'no'</em> 而变成一个否定的命令。例如： <code>:set ignorecase</code> 将搜索设置为大小写不敏感；而设置 <code>:set noignorecase</code> 则将搜索设置为大小写敏感。</p>
+<p><code>:set as=</code><em>style</em><br />
+<code>:set arrowstyle=</code><em>style</em><br />
+设置箭头的风格。可能的取值为 <em>'short'</em>， <em>'long'</em>，以及 <em>'highlight'</em> 。被改变风格的箭头是指向当前运行的源代码行的箭头。默认值是 <em>'short'</em>。为了更容易阅读，CGDB提供了更长的箭头。最后， <em>'highlight'</em> 选项不绘制出箭头，而是将整行反色。</p>
+<p><code>:set asr</code><br />
+<code>:set autosourcereload</code><br />
+如果这个选项被打开了，CGDB将会在源代码文件被CGDB打开后又被修改的时候自动地重新加载源代码文件。如果这个选项被关闭了，源代码文件将不会被重新加载，直到您重启CGDB。这个选项默认是开启的。这个特性在您调试程序时，修改源代码，重新编译以及在GDB的命令行窗口中输入 <em>r</em> 时非常有用。在这种情况下，这个文件将会被更新到最新的版本。请注意，CGDB只通过检查源代码文件的时间戳来判断它是否被改变。因此如果您修改了代码，但是没有重新编译它，CGDB将会依然重新加载改动后的源代码。</p>
+<p><code>:set cgdbmodekey=</code><em>key</em><br />
+这个选项用来设置将CGDB切换至CGDB模式的快捷键。默认的情况下， <em>ESC</em> 键是CGDB模式键。通过使用键码，CGDB模式键还可以被设置为任意的其他键。这个选项在用户想使用readline的vi模式时会特别有用。如果用户输入 <code>:set cgdbmodekey=&lt;PageUp&gt;</code> 然后 <em>PageUp</em> 键将会让CGDB进入CGDB模式， 而 <em>ESC</em> 键将会被readline接收。</p>
+<p><code>:set ic</code><br />
+<code>:set ignorecase</code><br />
+将搜索设置为大小写不敏感。默认情况下，这个选项是关闭的（默认大小写敏感）。</p>
+<p><code>:set stc</code><br />
+<code>:set showtgdbcommands</code><br />
+当这个选项被开启时，CGDB将会显示所有它发送给GDB的命令。如果这个选项关闭，CGDB将不会显示它发送给GDB的命令。这个选项默认是关闭的。</p>
+<p><code>:set syn=</code><em>style</em><br />
+<code>:set syntax=</code><em>style</em><br />
+将当前的源代码设置为 <em>style</em> 类型的高亮模式。可取的值有 <em>'c'</em> ， <em>'ada'</em> 以及 <em>'off'</em> 。通常的情况下，用户不会使用到这个命令，因为CGDB会自动得通过检测源代码文件的扩展名来选择高亮模式。但是这个特性目前可以被用于调试CGDB。</p>
+<p><code>:set to</code><br />
+<code>:set timeout</code><br />
+这个选项是与 <em>ttimeout</em> 选项一起使用的，它用来决定CGDB在接收到一部分被映射的按键或者是一部分的虚拟键码后的行为。如果这个选项被开启了，CGDB将会在一段时间后将这些按键序列或是虚拟键码的一部分判断为超时。如果这个选项是关闭的，用户定义的映射将不会被判断为超时。CGDB将会通过检验 <em>ttimeout</em> 选项的值来决定是否将虚拟键码的部分输入判断为超时。想要确定CGDB会如何处理被映射的按键与虚拟键码的超时和超时时长，请参见<a href="#6.0">第六章</a>中的列表。这个选项默认是被开启的。</p>
+<p><code>:set tm=</code><em>delay</em><br />
+<code>:set timeoutlen=</code><em>delay</em><br />
+这个选项被用来与 <em>ttimeoutlen</em> 选项配合使用。它用毫秒数值表示了CGDB将会等待一个按键映射序列完成输入的时间长度。如果 <em>delay</em> 为0，CGDB将会立即接收每个收到的字符输入。这样会阻止任何按键映射或是虚拟键码的输入。<em>delay</em> 可以在0至10000之间取值，包括0和10000。<em>delay</em> 的默认值为1000（一秒）。</p>
+<p><code>:set ttimeout</code><br />
+这个选项是与 <em>timeout</em> 一起使用的，它用来决定CGDB在接收到一部分虚拟键码后的行为。如果这个选项被开启了，CGDB对从键盘输入的虚拟键码设置超时。如果这个选项关闭，则CGDB将会根据 <em>timeout</em> 选项来决定是否需要对虚拟键码设置超时。想要确定CGDB会如何处理虚拟键码的超时和超时时长，请参见<a href="#6.0">第六章</a>中的列表。这个选项默认是被开启的。</p>
+<p><code>:set ttm=</code><em>delay</em><br />
+<code>:set ttimeoutlen=</code><em>delay</em><br />
+这个选项是与 <em>timeoutlen</em> 选项一起使用的。它用毫秒数值表示了CGDB将会等待一个虚拟键码被完成输入的时间长度。如果 <em>delay</em> 为0，CGDB将会立即接收每个收到的字符输入。这样将会阻止任何虚拟键码的输入。<em>delay</em> 可以在0至10000之间取值，包括0和10000。<em>delay</em> 的默认值为100（十分之一秒）。</p>
+<p><code>:set ts=</code><em>number</em><br />
+<code>:set tabstop=</code><em>number</em><br />
+设置一个TAB键在屏幕上显示的对应空格的个数。默认的 <em>number</em> 值为8。</p>
+<p><code>:set wmh=</code><em>number</em><br />
+<code>:set winminheight=</code><em>number</em><br />
+窗口的最小高度。CGDB中的所有的窗口的高度都不会小于这个值。默认的 <em>number</em> 值为0。</p>
+<p><code>:set winsplit=</code><em>style</em><br />
+设置代码窗口和GDB窗口分界的位置。这个选项在被写入cgdbrc时会非常有用。参见<a href="#4.0">第四章</a>。<em>style</em> 选项可取的值有 <em>top_full</em> ， <em>top_big</em> ， <em>even</em> ， <em>bottom_big</em> 以及 <em>bottom_full</em>。</p>
+<p><code>:set ws</code><br />
+<code>:set wrapscan</code><br />
+当搜索到文件的末尾时从头开始继续搜索。这个选项默认是被开启的。</p>
+<p><code>:c</code><br />
+<code>:continue</code><br />
+向GDB发送一个<code>continue</code>命令。</p>
+<p><code>:down</code><br />
+向GDB发送一个<code>down</code>命令。</p>
+<p><code>:e</code><br />
+<code>:edit</code><br />
+重新加载代码窗口中的文件。这个选项在文件被cgdb打开后被改变的时候有用。</p>
+<p><code>:f</code><br />
+<code>:finish</code><br />
+向GDB发送一个<code>finish</code>命令。</p>
+<p><code>:help</code><br />
+这个命令将在代码窗口中以文本形式显示本手册。</p>
+<p><code>:hi</code> <em>group</em> <code>cterm=</code><em>attributes</em> <code>ctermfg=</code><em>color</em> <code>ctermbg=</code><em>color</em> <code>term=</code><em>attributes</em><br />
+<code>:highlight</code> <em>group</em> <code>cterm=</code><em>attributes</em> <code>ctermfg=</code><em>color</em> <code>ctermbg=</code><em>color</em> <code>term=</code><em>attributes</em><br />
+为特定的高亮组设置颜色和属性。命令的格式模仿了vim中的“highlight”命令。<code>group</code>、<code>attributes</code>和<code>color</code>的可以选择的值请参见<a href="#5.0">第五章</a>。<br />
+您可以给出任意顺序、任意数量的名字-值对。'<em>ctermfg</em>' 和 '<em>ctermbg</em>' 分别设置前景色和背景色。可以通过数字或者vim中颜色的名字来选择特定的颜色。当CGDB与ncurses链接时，使用数字表达颜色的数值可以设置为-1至COLORS之间的值。当CGDB与curses链接时，数值必须在0至COLORS之间。<br />
+'<em>cterms</em>' 设置彩色终端的视频属性。'<em>term</em>' 设置黑白终端的视频属性。以下是一些这个命令的例子：<br />
+<code>:highlight Logo cterm=bold,underline ctermfg=Red ctermbg=Black</code><br />
+<code>:highlight Normal cterm=reverse ctermfg=White ctermbg=Black</code><br />
+<code>:hi Normal term=bold</code></p>
+<p><code>:insert</code><br />
+激活GDB窗口。</p>
+<p><code>:n</code><br />
+<code>:next</code><br />
+向GDB发送一个next命令。</p>
+<p><code>:q</code><br />
+<code>:quit</code><br />
+退出CGDB。</p>
+<p><code>:r</code><br />
+<code>:run</code><br />
+向GDB发送一个run命令。</p>
+<p><code>:start</code><br />
+向GDB发送一个start命令。</p>
+<p><code>:k</code><br />
+<code>:kill</code><br />
+向GDB发送一个kill命令。</p>
+<p><code>:s</code><br />
+<code>:step</code><br />
+向GDB发送一个step命令。</p>
+<p><code>:syntax</code><br />
+打开或关闭代码高亮（使用<code>:syntax on</code>与<code>:syntax off</code>打开和关闭代码高亮，译者注）</p>
+<p><code>:up</code><br />
+向GDB发送一个up命令。</p>
+<p><code>:map</code> <em>lhs</em> <em>rhs</em><br />
+创建一个在CGDB模式下的新的键盘映射，或是替换一个已有的CGDB模式下的键盘映射。在命令被执行后，当 <em>lhs</em> 被输入时，CGDB将会收到 <em>rhs</em> 而不是 <em>lhs</em>。更多关于如何使用map命令的细节请参见<a href="#6.2">6.2节</a>。</p>
+<p><code>:unm lhs</code><br />
+<code>:unmap lhs</code><br />
+删除一个CGDB模式下的已有的键盘映射。<em>lhs</em> 是用户在创建键盘映射时左边输入的字符组合。例如，如果用户输入<code>:map a&lt;Space&gt;b foo</code>，那么用户可以通过输入<code>:unmap a&lt;Space&gt;b</code>来取消这个已经存在的键盘映射。</p>
+<p><code>:im lhs rhs</code><br />
+<code>:imap lhs rhs</code><br />
+创建一个GDB模式下的新的键盘映射，或是替换一个已有的GDB模式下的键盘映射。在命令被执行后，当 <em>lhs</em> 被输入时，CGDB将会收到 <em>rhs</em> 而不是 <em>lhs</em>。更多关于如何使用map命令的细节请参见<a href="#6.2">6.2节</a>。</p>
+<p><code>:iu lhs</code><br />
+<code>:iunmap lhs</code><br />
+删除一个GDB模式下的已有的键盘映射。<em>lhs</em> 是用户在创建键盘映射时左边输入的字符组合。例如，如果用户输入<code>:imap a&lt;Space&gt;b foo</code>，那么用户可以通过输入<code>:iunmap a&lt;Space&gt;b</code>来取消这个已经存在的键盘映射。</p><a name="5.0"></a>
+<p>上一章：<a href="#4.0">CGDB配置命令</a>，下一节：<a href="#5.1">不同的高亮组</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h1>5 CGDB高亮组</h1>
+<p>如果终端支持彩色显示，那么CGDB是能够使用彩色的。直到0.6.1版本，CGDB不允许用户以任何方式配置色彩高亮。目前CGDB中的色彩高亮是完全可配置的。</p>
+<p>CGDB在色彩高亮上模仿了vim中的色彩高亮。任何在终端中被高亮的数据都是被一个高亮组所表示的。一个高亮组表示了数据需要被高亮的前景色、背景色和属性。目前CGDB中有多种不同类型的高亮组。有语法高亮组，代表着对源代码的语法高亮。也有UI高亮组，代表CGDB的logo与状态栏等等。</p>
+<p>每个高亮组都有一组默认的属性和颜色与其相关联。您可以通过highlight命令来修改一个高亮组的属性。参见<a href="#4.0">第四章</a>。</p>
+<p>请注意，CGDB目前支持使用和启动CGDB前终端的颜色相同的背景颜色。但是，这只在CGDB与ncurses链接时有效。如果您将CGDB与curses链接，则CGDB将会将背景色强制设置成黑色。</p>
+<ul>
+<li><a href="#5.1">可使用的高亮组</a>：不同的高亮组。</li>
+<li><a href="#5.2">可使用的属性</a>：不同的属性。</li>
+<li><a href="#5.3">可使用的颜色</a>：不同的颜色。</li>
+</ul><a name="5.1"></a>
+<p>上一节：<a href="#5.0">CGDB高亮组</a>，下一节：<a href="#5.2">不同的属性</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>5.1 不同的高亮组</h2>
+<p>下面的列表列出了CGDB在高亮代码文件时会使用的全部高亮组。</p>
+<p><code>Statement</code><br />
+表示了一种语言定义的关键字</p>
+<p><code>Type</code><br />
+表示了一种语言定义的类型</p>
+<p><code>Constant</code><br />
+表示了字符串或者数字</p>
+<p><code>Comment</code><br />
+表示了源代码中的注释</p>
+<p><code>PreProc</code><br />
+表示了C/C++中的预处理指令</p>
+<p><code>Normal</code><br />
+表示了普通文本</p>
+<p>下面的列表列出了CGDB在显示其UI时会使用的全部高亮组。</p>
+<p><code>StatusLine</code><br />
+表示了CGDB中的状态栏。文件对话框的状态栏也会是用这个高亮组。</p>
+<p><code>IncSearch</code><br />
+表示了当用户在文件对话框窗口或是代码窗口中搜索时使用的高亮组。</p>
+<p><code>Arrow</code><br />
+表示了CGDB绘制的指向当前浏览代码行的箭头</p>
+<p><code>LineHighlight</code><br />
+表示了当用户设置<code>arrowstyle</code>选项为<code>highlight</code>时，高亮行使用的高亮组</p>
+<p><code>Breakpoint</code><br />
+表示了CGDB显示被设置了断点的行所使用的高亮组</p>
+<p><code>DisabledBreakpoint</code><br />
+表示了CGDB显示断点被禁用的行所使用的高亮组</p>
+<p><code>SelectedLineNr</code><br />
+表示了CGDB显示当前被选择的行。也就是光标所在的行。</p>
+<p><code>Logo</code><br />
+这个高亮组是CGDB在没有源代码被自动检测到的时候所显示的logo的高亮组。</p><a name="5.2"></a>
+<p>上一节：<a href="#5.1">不同的高亮组</a>，下一节：<a href="#5.3">不同的颜色</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>5.2 不同的属性</h2>
+<p>CGDB支持curses提供的部分属性。它会将这些属性应用至输出窗口，但是这取决于您使用的终端是否支持这些特性。</p>
+<p>下面列出了CGDB目前支持的一系列属性。</p>
+<p><code>normal</code><br />
+<code>NONE</code><br />
+这将会让文本保留不同样式。使用curses中的A_NORMAL属性。</p>
+<p><code>bold</code><br />
+这将会让文本加粗显示。使用curses中的A_BOLD选项。</p>
+<p><code>underline</code><br />
+这将会让文本带下划线显示。使用curses中的A_UNDERLINE选线。</p>
+<p><code>reverse</code><br />
+<code>inverse</code><br />
+这会将前景色与背景色调换。使用curses中的A_REVERSE选项。</p>
+<p><code>standout</code><br />
+这是最适合的终端高亮模式。使用curses中的A_STANDOUT选项。</p>
+<p><code>blink</code><br />
+这会使文本闪烁。使用curses中的A_BLINK选项。</p>
+<p><code>dim</code><br />
+这会使文本亮度减少1/2。使用curses中的A_DIM选项。</p><a name="5.3"></a>
+<p>上一节：<a href="#5.2">不同的属性</a>，下一章：<a href="#6.0">CGDB键盘用户接口</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>5.3 不同的颜色</h2>
+<p>CGDB支持一些颜色，取决于您的终端支持多少种颜色。下表是一个CGDB所提供的颜色的表格。标题为NR-16的列表示终端至少支持16种颜色。标题为NR-8的列表示终端至少支持8种颜色。每种颜色对应的整数数值表示了被传入curse函数<code>init_pair()</code>的数值，该函数用来使curse创建一种新的颜色。</p>
+<table summary=""><tbody><tr align="left"><td valign="top" width="40%"><code>COLOR NAME</code>
+</td><td valign="top" width="20%"><code>NR-16</code>
+</td><td valign="top" width="20%"><code>NR-8</code>
+</td><td valign="top" width="20%"><code>NR-8 bold attribute</code>
+<br></td></tr><tr align="left"><td valign="top" width="40%">Black
+</td><td valign="top" width="20%">0
+</td><td valign="top" width="20%">0
+</td><td valign="top" width="20%">No
+<br></td></tr><tr align="left"><td valign="top" width="40%">DarkBlue
+</td><td valign="top" width="20%">1
+</td><td valign="top" width="20%">4
+</td><td valign="top" width="20%">No
+<br></td></tr><tr align="left"><td valign="top" width="40%">DarkGreen
+</td><td valign="top" width="20%">2
+</td><td valign="top" width="20%">2
+</td><td valign="top" width="20%">No
+<br></td></tr><tr align="left"><td valign="top" width="40%">DarkCyan
+</td><td valign="top" width="20%">3
+</td><td valign="top" width="20%">6
+</td><td valign="top" width="20%">No
+<br></td></tr><tr align="left"><td valign="top" width="40%">DarkRed
+</td><td valign="top" width="20%">4
+</td><td valign="top" width="20%">1
+</td><td valign="top" width="20%">No
+<br></td></tr><tr align="left"><td valign="top" width="40%">DarkMagenta
+</td><td valign="top" width="20%">5
+</td><td valign="top" width="20%">5
+</td><td valign="top" width="20%">No
+<br></td></tr><tr align="left"><td valign="top" width="40%">Brown, DarkYellow
+</td><td valign="top" width="20%">6
+</td><td valign="top" width="20%">3
+</td><td valign="top" width="20%">No
+<br></td></tr><tr align="left"><td valign="top" width="40%">LightGray, LightGrey, Gray, Grey
+</td><td valign="top" width="20%">7
+</td><td valign="top" width="20%">7
+</td><td valign="top" width="20%">No
+<br></td></tr><tr align="left"><td valign="top" width="40%">DarkGray, DarkGrey
+</td><td valign="top" width="20%">8
+</td><td valign="top" width="20%">0
+</td><td valign="top" width="20%">Yes
+<br></td></tr><tr align="left"><td valign="top" width="40%">Blue, LightBlue
+</td><td valign="top" width="20%">9
+</td><td valign="top" width="20%">4
+</td><td valign="top" width="20%">Yes
+<br></td></tr><tr align="left"><td valign="top" width="40%">Green, LightGreen
+</td><td valign="top" width="20%">10
+</td><td valign="top" width="20%">2
+</td><td valign="top" width="20%">Yes
+<br></td></tr><tr align="left"><td valign="top" width="40%">Cyan, LightCyan
+</td><td valign="top" width="20%">11
+</td><td valign="top" width="20%">6
+</td><td valign="top" width="20%">Yes
+<br></td></tr><tr align="left"><td valign="top" width="40%">Red, LightRed
+</td><td valign="top" width="20%">12
+</td><td valign="top" width="20%">1
+</td><td valign="top" width="20%">Yes
+<br></td></tr><tr align="left"><td valign="top" width="40%">Magenta, LightMagenta
+</td><td valign="top" width="20%">13
+</td><td valign="top" width="20%">5
+</td><td valign="top" width="20%">Yes
+<br></td></tr><tr align="left"><td valign="top" width="40%">Yellow, LightYellow
+</td><td valign="top" width="20%">14
+</td><td valign="top" width="20%">3
+</td><td valign="top" width="20%">Yes
+<br></td></tr><tr align="left"><td valign="top" width="40%">White
+</td><td valign="top" width="20%">15
+</td><td valign="top" width="20%">7
+</td><td valign="top" width="20%">Yes
+   <br></td></tr></tbody></table><a name="6.0"></a>
+<p>上一节：<a href="#5.3">不同的颜色</a>，下一节：<a href="#6.1">KUI超时选项</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h1>6 CGDB键盘用户接口</h1>
+<p>CGDB通过键盘用户接口从用户那里获取输入。我们通常称键盘用户接口为KUI。CGDB仅需要向KUI获取KUI提供的下一个用户输入的指令。</p>
+<p>除了读取用户输入以及提供这些输入给CGDB以外，KUI还有两个主要的责任：它需要检测用户输入自定义的键盘映射与用户按下的特殊键。</p>
+<p>用户定义的映射，或是简单映射，是用来改变输入的按键的含义。一些用户可能会称将这种功能称之为 <em>宏</em> 。例如：<code>map a b</code>。当用户输入了\&lt;a>字符，则KUI将会检测到并且替换为\&lt;b>然后将\&lt;b>返回给CGDB。</p>
+<p>当用户输入了键盘上的特殊字符时，一个键码会被发往CGDB。例如HOME、DEL、\&lt;F1>等等。当这样的键被按下时，操作系统将会发送几个字符给应用程序，而不是像普通的按键一样仅发送一个字符。这些连结的字符被称之为一个按键序列。KUI则负责将这些按键序列进行组合，并且向CGDB报告：有一个特别的按键被用户按下。ESC键是比较特殊的，因为大多数的键码都以它为开始。它通常给出了所有的按键序列的通常的头部。KUI使用了terminfo数据库去判断按键序列是由什么键码产生的。有少部分常用的按键序列被硬编码进CGDB中。</p>
+<p>KUI主要的挑战是如何判断何时一个映射或者按键序列被输入完成。KUI有时需要读入不止一个字符去确定映射或者按键序列被输入完成。例如，用户设置了两个映射，<code>map abc def</code>与<code>map abd def</code>，KUI需要在它能判断用户是否要输入一个映射之前缓存\&lt;a>与\&lt;b>两个字符。当下一个键被按下时，如果用户输入\&lt;c>或是\&lt;d>则KUI收到一个映射，然后将<code>d e f</code>返回给CGDB。否则，没有映射被接收到，KUI将会把<code>a b</code>返回给CGDB。</p>
+<p>选项 <em>timeout</em> ， <em>ttimeout</em> ， <em>timeoutlen</em> 以及 <em>ttimeoutlen</em> 可以被用来告诉KUI是否需要在映射或是按键序列的中间保持超时，以及如果需要的话，需要保持多久。</p>
+<ul>
+<li><a href="#6.1">配置KUI的超时选项</a>：KUI超时选项</li>
+<li><a href="#6.2">理解键盘映射</a>：使用键盘映射</li>
+<li><a href="#6.3">理解键码</a>：理解键码</li>
+</ul><a name="6.1"></a>
+<p>上一节：<a href="#6.0">CGDB键盘用户接口</a>，下一节：<a href="#6.2">使用映射</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>6.1 KUI超时选项</h2>
+<p>KUI可以被配置为在输入部分的映射或键序列时，经过一定时间间隔后超时。</p>
+<p>当KUI匹配了一部分的映射或键序列时就可以超时。这意味着它将在前一个按键后等待一段时间，并且在超时后接收这个独立的按键。这是很显而易见的，因为用户在输入映射时必须独立的输入每个字符。对于部分的序列则并不这么明显，因为用户只敲击了一个按键，但是多个字符就会被发送至CGDB。下表描述了用户可以如何配置KUI对键码和映射的超时选项，通过 <em>timeout</em> 与 <em>ttimeout</em> 选项。</p><a name="6.2"></a>
+<p>上一节：<a href="#6.1">KUI超时选项</a>，下一节：<a href="#6.3">键码</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>6.2 使用映射</h2>
+<p>CGDB 完整支持键盘映射，允许用户改变键盘输入的含义。比如，你可以这样的射：<code>map &lt;F2&gt; ip&lt;Space&gt;argc&lt;CR&gt;</code>。</p>
+<p>在CGDB模式下，如果按下 F2 键，就会被替换成它所映射的值。 CGDB 先会收到 i 键，进入插入模式，接着 CGDB 会收到 p argc 以及一个紧跟着的回车键。</p>
+<p>CGDB 目前支持两个映射表。用 <em>map</em> 命令添加的映射在 CGDB 模式下会给 CGDB 使用。要删除由 <em>map</em> 命令添加的映射，可以使用 <em>unmap</em> 命令。如果想在 GDB 模式下进行映射，可以使用 <em>imap</em> 命令，而 <em>iunmap</em> 命令则可以删除 <em>imap</em> 所添加的映射。例如：</p>
+<p>```VimL
+    map a<Space>b foo
+    unmap a<Space>b</p>
+<pre><code>imap a&lt;CR&gt;b foo
+iunmap a&lt;CR&gt;b
+</code></pre>
+<p>```</p><a name="6.3"></a>
+<p>上一节：<a href="#6.2">使用映射</a>，下一节：<a href="#7.0">对被调试的程序进行I/O操作</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h2>6.3 理解键码</h2>
+<p>对于不大熟悉 vim 映射的人来说前面的例子需要一点解释。映射包括一个键和一个值，它们以一个空格作为分隔符分开。键和值的表示形式均不能直接含有空格，否则这些空格会被认为是分隔符。如果需要在键或者值之内包含一个空格，可以使用键码记号 &lt;Space&gt; 。下面是以键码记号形式表示的键码表，这些键码记号可以在所有映射命令中使用。</p>
+<p>记号             |  表示含义 
+:----------------|:-------------
+&lt;Esc&gt;      |  ESC键
+&lt;Up&gt;       |  光标向上移动
+&lt;Down&gt;     |  光标向下移动
+&lt;Left&gt;     |  光标向左移动
+&lt;Right&gt;    |  光标向右移动
+&lt;Home&gt;     |  HOME 键
+&lt;End&gt;      |  END 键
+&lt;PageUp&gt;   |  向上翻页
+&lt;PageDown&gt; |  向下翻页
+&lt;Del&gt;      |  DELETE 键
+&lt;Insert&gt;   |  INSERT 键
+&lt;Nul&gt;      |  空 (NULL)
+&lt;Bs&gt;       |  BACKSPACE 回退键
+&lt;Tab&gt;      |  TAB 键
+&lt;NL&gt;       |  换行
+&lt;FF&gt;       |  换页
+&lt;CR&gt;       |  回车
+&lt;Space&gt;    |  空格
+&lt;Lt&gt;       |  小于
+&lt;Bslash&gt;   |  反斜杆 &#92;
+&lt;Bar&gt;      |  竖杠
+&lt;F1&gt;-&lt;F12&gt; | 功能键 F1 .. F12      <br />
+&lt;C-&gt;       |  Ctrl 控制键
+&lt;S-&gt;       |  Shift 键</p><a name="7.0"></a>
+<p>上一节：<a href="#6.3">理解键码</a>，下一节：<a href="#8.0">在CGDB中允许终端控制流</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h1>7 对被调试的程序进行I/O操作</h1>
+<p>如果被调试的程序需要读取终端用户输入，我们推荐用户在终端中启动被调试程序，然后在另一个终端使用CGDB去attach被调试程序，这是与被调试程序进行I/O交互最简单的方法。</p>
+<p>然而如果用户希望能直接在CGDB内对被调试程序进行输入，CGDB也提供了这样的机制。下述的方法在Windows下编译的GDB上是不可行的。在Cygwin中运行的GDB上或许可以运行。</p>
+<p>这个方法和进入/退出GDB模式的方法相似。在缺省的情况下，tty窗口是不可见的。这是因为用户仅在想要与被调试程序进行I/O操作时才会需要用到这个窗口。在命令模式下按 <em>T</em> 键可以显示这个窗口。在按下 <em>T</em> 键之后，你会发现在代码窗口和gdb窗口中间出现了一个新的窗口。它叫做tty窗口。同时您也会看见一个新的状态栏，叫作tty状态栏。在您键入 <em>T</em> 之后，tty状态栏上会显示出一个 ‘<em>’ 键。这是因为当键入 </em>T<em> 键，这个窗口被打开时，CGDB会自动将用户置入TTY模式。想要退出这个模式可以键入CGDB模式切换键（默认为ESC键）。这将会让您进入命令模式。可以通过在命令模式下键入 </em>T* 键打开和隐藏tty窗口。</p>
+<p>tty窗口被打开后，用户可以键入 <em>I</em> 命令进入TTY模式。用户可以在TTY模式下键入cgdb模式切换键退出到命令模式。</p>
+<p>当tty窗口打开时，所有从程序输出的数据将会被显示在那里。任何在tty窗口被输入的数据将会被传输到被调试的程序中。这些数据将不会被送到GDB。当tty窗口关闭时，所有的输出将会通过GDB窗口显示出来，同时也会在tty窗口被输出（这样在tty窗口后来被打开时就可以看到之前的程序输出）。</p>
+<p>如果用户希望为被调试程序获取一个新的tty窗口，可以键入Ctrl - T。这将会清空被调试程序的输入缓冲区中的所有数据。这个功能也许会在您重新运行被调试程序的时候有帮助。</p><a name="summary_of_cgdb"></a>
+<p>上一章：<a href="#SUMMARY">目录</a>，下一章：<a href="#1.0">打开和关闭CGDB</a>，目录：<a href="#SUMMARY">目录</a></p>
+<hr />
+<h1>CGDB简介</h1>
+<p>CGDB是一个基于curses图形库的GNU Debugger（GDB）图形接口。CGDB的目标是变的轻量而且敏捷，并且不会加入不必要的功能使其变得臃肿。</p>
+<p>CGDB的图形接口是参考GDB的文本用户接口（tui）设计和实现的，它使用一个分屏显示了当前执行的代码。代码区的界面模仿了Unix经典的文本编辑器：vi。熟悉vi的人对CGDB应该有着宾至如归的感觉。</p>
+<p>CGDB中负责和GDB通信的库是Trivial GDB（tgdb或者叫做libtgdb）。使用这个抽象层使得展示代码的UI界面能够独立于调试器，并且极大的简化了CGDB的实现。</p>
+<p>推荐那些开发其他GDB的接口的人使用libtgdb作为程序的抽象层。使用它可以避免很多令人头疼的GDB的输出和注释的解析问题。</p>
+<p>CGDB具有如下这些特性：</p>
+<ul>
+<li>高亮的源代码窗口</li>
+<li>可视化的断点</li>
+<li>常用功能的键盘快捷键</li>
+<li>搜索源代码（通过正则表达式）</li>
+</ul>
+<div class="nj-footer">	<span><a href="https://nowjava.com" style="color:#ccc;text-decoration:none;">时代Java</a> &copy; 2014-2019</span></div><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?85351496e33f9c28bf5d2532431429fe";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script></BODY>
+</HTML>
