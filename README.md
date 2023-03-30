@@ -6,6 +6,6 @@
 
 ### [GDB中的断点](breakpoints/README.md)
 
-### [CGDB介绍](breakpoints/README.md)
+### [CGDB介绍](cgdb/README.md)
 
 ### [在vscode中使用gdb进行调试](vscode/README.md)
