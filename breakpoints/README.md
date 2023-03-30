@@ -5,3 +5,4 @@
 - [恢复执行](resuming_execution)
 - [删除断点](deleting_breakpoints)
 - 禁用断点
+- [设置监视点](setting_watchpoints)
