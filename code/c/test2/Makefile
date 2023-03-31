@@ -1,10 +1,17 @@
-TARGET = test2
+CC = gcc
 CFLAGS = -g3 -Wall -Wextra
 
-all: $(TARGET)
+SOURCES = $(shell ls *.c)
+TARGET = test2
 
+all: $(TARGET)
+	@echo "TARGET = $(TARGET)" 
+
+$(TARGET): $(SOURCES)
+	$(CC) $(CFLAGS) -o $@ $^
 
 .PHONY:
-
 clean:
 	$(RM) $(TARGET) a.out core *.o
+	@echo "clean OK!"
+

@@ -6,7 +6,7 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     在函数function()的入口（第一行可执行代码）处设置断点。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o test1 test1.c
+    $ gcc -g3 -Wall -Wextra -o test1 test1.c
     $ gdb test1
     (gdb) break main
     Breakpoint 1 at 0x5fe: file test1.c, line 4.

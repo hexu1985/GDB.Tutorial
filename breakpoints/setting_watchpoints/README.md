@@ -13,6 +13,30 @@
     ```
     该命令会导致每当var改变值时GDB都会中断。
     如果命令包含[thread threadnum]参数，GDB 只会在 threadnum 标识的线程改变表达式 expr 的值时中断。注意，只在硬件监视点上 GDB 才起作用。
+    ```
+    $ gcc -g3 -Wall -Wextra -o test2 test2.c 
+    $ gdb test2
+    (gdb) break main
+    Breakpoint 1 at 0x64e: file test2.c, line 6.
+    (gdb) run
+    Starting program: /home/hexu/git/GDB.Tutorial/code/c/test2/test2
+    
+    Breakpoint 1, main () at test2.c:6
+    6           i = 3;
+    (gdb) watch i > 4
+    Hardware watchpoint 2: i > 4
+    (gdb) continue
+    Continuing.
+    i is 3.
+    
+    Hardware watchpoint 2: i > 4
+    
+    Old value = 0
+    New value = 1
+    main () at test2.c:10
+    10          printf("i is %d.\n", i);
+    (gdb)
+    ```
 
 - rwatch expr [thread threadnum]
     程序读表达式的值时中断。
@@ -22,3 +46,4 @@
 
 - info watchpoints
     打印监视点，断点和捕获点列表；和 info break 相同。
+
