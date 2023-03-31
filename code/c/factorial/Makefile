@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -g3 -Wall -Wextra
+CFLAGS = -g3 -Wall -Wextra
 
 SOURCES = $(shell ls *.c)
 TARGET = factorial

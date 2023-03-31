@@ -16,7 +16,7 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     在当前活动源代码文件的line_numnber处设置断点。 对于多文件的项目，这要么是上次使用list命令查看其内容的文件，要么是包含main()的文件。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+    $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
     $ gdb swap
     (gdb) break 6
     Breakpoint 1 at 0x6c1: file main.c, line 6.
@@ -25,7 +25,7 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     list后再break的效果。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+    $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
     $ gdb swap
     (gdb) list swap
     1       void swap(int *a, int *b)
@@ -43,7 +43,7 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     则可以给出相对路径名或者完全路径名来帮助GDB查找该文件。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+    $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
     $ gdb swap
     (gdb) break swapper.c:1
     Breakpoint 1 at 0x73b: file swapper.c, line 1.
@@ -53,7 +53,7 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     在文件filename中的函数function()的入口处设置断点。重载函数或者使用同名静态函数的程序可能需要使用这种形式。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+    $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
     $ gdb swap
     (gdb) break swapper.c:swap
     Breakpoint 1 at 0x73b: file swapper.c, line 3.
@@ -63,7 +63,7 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     在不带参数的情况下，break 命令在当前栈里的下一条指令里设置断点
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o factorial factorial.c
+    $ gcc -g3 -Wall -Wextra -o factorial factorial.c
     $ gdb factorial
     (gdb) break main
     Breakpoint 1 at 0x763: file factorial.c, line 20.
@@ -95,7 +95,7 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     ‘...’代表可能的指定中断位置的参数（上面描述过的）
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o factorial factorial.c
+    $ gcc -g3 -Wall -Wextra -o factorial factorial.c
     $ gdb factorial
     (gdb) break 25
     Breakpoint 1 at 0x7a6: file factorial.c, line 25.
@@ -120,7 +120,7 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     设置一个只中断一次的断点。args 和 break 命令里的参数一样，断点设置也一样，但断点在第一次程序中断后自动删除。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o factorial factorial.c
+    $ gcc -g3 -Wall -Wextra -o factorial factorial.c
     $ gdb factorial
     (gdb) tbreak factorial
     Temporary breakpoint 1 at 0x725: file factorial.c, line 11.

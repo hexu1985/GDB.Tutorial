@@ -7,7 +7,7 @@ clear命令使用与创建断点相同的语法删除断点。
     删除断点使用数值标识符。断点可以是一个数字，比如delete 2删除第二个断点；
     也可以是数字列表，比如delete 2 4删除第二个和第四个断点。
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+    $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
     $ gdb swap
     (gdb) break main
     Breakpoint 1 at 0x6b2: file main.c, line 5.
@@ -27,7 +27,7 @@ clear命令使用与创建断点相同的语法删除断点。
 - delete
     删除所有的断点。
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+    $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
     $ gdb swap
     (gdb) break main
     Breakpoint 1 at 0x6b2: file main.c, line 5.
@@ -47,7 +47,7 @@ clear命令使用与创建断点相同的语法删除断点。
 - clear 
     在选定的栈帧上的下一个指令上删除所有的断点。只要选择最内层的帧的话，这是一个在程序中断地方删除断点的好方法。
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+    $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
     $ gdb swap
     (gdb) break main
     Breakpoint 1 at 0x6b2: file main.c, line 5.
@@ -87,7 +87,7 @@ clear命令使用与创建断点相同的语法删除断点。
     在指定的位置删除所有的断点，工作方式与对应的break命令相似。
     + clear function
         ```
-        $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+        $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
         $ gdb swap
         (gdb) break main
         Breakpoint 1 at 0x6b2: file main.c, line 5.
@@ -106,7 +106,7 @@ clear命令使用与创建断点相同的语法删除断点。
         ```
     + clear filename:function
         ```
-        $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+        $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
         $ gdb swap
         (gdb) break main
         Breakpoint 1 at 0x6b2: file main.c, line 5.
@@ -125,7 +125,7 @@ clear命令使用与创建断点相同的语法删除断点。
         ```
     + clear line_number
         ```
-        $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+        $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
         $ gdb swap
         (gdb) list swap
         1       void swap(int *a, int *b)
@@ -147,7 +147,7 @@ clear命令使用与创建断点相同的语法删除断点。
         ```
     + clear filename:line_number
         ```
-        $ gcc -Wall -g3 -Wall -Wextra -o swap main.c swapper.c
+        $ gcc -g3 -Wall -Wextra -o swap main.c swapper.c
         $ gdb swap
         (gdb) break main
         Breakpoint 1 at 0x6b2: file main.c, line 5.

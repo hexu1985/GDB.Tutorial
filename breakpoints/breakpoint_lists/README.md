@@ -3,7 +3,7 @@
 当创建新断点时，GDB会告知你分配给该断点的编号。例如：
 
 ```
-$ gcc -Wall -g3 -Wall -Wextra -o test1 test1.c
+$ gcc -g3 -Wall -Wextra -o test1 test1.c
 $ gdb test1
 (gdb) break main
 Breakpoint 1 at 0x5fe: file test1.c, line 4.
@@ -12,7 +12,7 @@ Breakpoint 1 at 0x5fe: file test1.c, line 4.
 如果忘记了分配给哪个断点的编号是什么，可以使用info breakpoints命令来提示。
 
 ```
-$ gcc -Wall -g3 -Wall -Wextra -o test1 test1.c
+$ gcc -g3 -Wall -Wextra -o test1 test1.c
 $ gdb test1
 (gdb) break main
 Breakpoint 1 at 0x5fe: file test1.c, line 4.

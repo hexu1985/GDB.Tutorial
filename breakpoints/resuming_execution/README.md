@@ -16,7 +16,7 @@
     类似的，不会单步进一个没有调试信息的函数。要跳过没有调试信息的函数，用 stepi 命令。如果在这行代码上调用的函数有调试信息，step 会继续中断。换句话说是，step 会进入这行代码所调用的所有函数。如果函数有行号信息，step 命令也只进入这个函数。否则 step 命令就如 next 命令。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swapflaw swapflaw.c
+    $ gcc -g3 -Wall -Wextra -o swapflaw swapflaw.c
     $ gdb swapflaw
     (gdb) break main
     Breakpoint 1 at 0x652: file swapflaw.c, line 7.
@@ -68,7 +68,7 @@
     在当前栈帧（最内层）上继续执行到下一行源码行。和 step 相似，但在这行代码上调用的函数将不会中断。程序执行到在原栈层里的另一行代码时会中断。缩写为 n。参数 count 是重复次数，和 step 的一样。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swapflaw swapflaw.c
+    $ gcc -g3 -Wall -Wextra -o swapflaw swapflaw.c
     $ gdb swapflaw
     (gdb) break main
     Breakpoint 1 at 0x652: file swapflaw.c, line 7.
@@ -113,7 +113,7 @@
     同义词 c 和 fg（表示 foreground，因为被调试的程序总被认为是前台程序）只是为方便而提供的，其行为就如continue 一样。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swapflaw swapflaw.c
+    $ gcc -g3 -Wall -Wextra -o swapflaw swapflaw.c
     $ gdb swapflaw
     (gdb) break main
     Breakpoint 1 at 0x652: file swapflaw.c, line 7.
@@ -148,7 +148,7 @@
     继续执行直到当前选定栈帧上的函数返回。打印返回值（如果有）。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o swapflaw swapflaw.c
+    $ gcc -g3 -Wall -Wextra -o swapflaw swapflaw.c
     $ gdb swapflaw
     (gdb) break main
     Breakpoint 1 at 0x652: file swapflaw.c, line 7.
@@ -199,7 +199,7 @@
     until 总是在程序试图从当前栈帧中退出的时候中断执行。
 
     ```
-    $ gcc -Wall -g3 -Wall -Wextra -o until-anomaly until-anomaly.c
+    $ gcc -g3 -Wall -Wextra -o until-anomaly until-anomaly.c
     $ gdb until-anomaly
     (gdb) break main
     Breakpoint 1 at 0x652: file until-anomaly.c, line 7.
