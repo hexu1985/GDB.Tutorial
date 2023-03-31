@@ -47,3 +47,6 @@
 - info watchpoints
     打印监视点，断点和捕获点列表；和 info break 相同。
 
+### 参考资料:
+- 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.12 Watchpoints
+- 《Debugging With GDB》: 5.1.2 Setting Watchpoints

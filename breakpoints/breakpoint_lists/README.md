@@ -65,4 +65,4 @@ Num     Type           Disp Enb Address            What
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.3.1 Breakpoint Lists in GDB
-- 《Debugging With GDB》:5.1.1 Setting Breakpoints
+- 《Debugging With GDB》: 5.1.1 Setting Breakpoints
