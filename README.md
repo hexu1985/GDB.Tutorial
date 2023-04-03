@@ -1,4 +1,4 @@
-# Gflags & Glog Tutorial
+# GDB Tutorial
 
 ## Table of contents
 
