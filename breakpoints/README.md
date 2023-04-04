@@ -6,4 +6,5 @@
 - [禁用断点]()
 - [恢复执行](resuming_execution)
 - [条件断点](conditional_breakpoints)
+- [断点命令列表](breakpoint_command_lists)
 - [设置监视点](setting_watchpoints)
