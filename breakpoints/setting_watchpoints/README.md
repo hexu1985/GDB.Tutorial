@@ -49,4 +49,3 @@
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.12 Watchpoints
-- 《Debugging With GDB》: 5.1.2 Setting Watchpoints

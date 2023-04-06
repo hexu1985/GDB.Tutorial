@@ -226,4 +226,3 @@
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.9 Resuming Execution
-- 《Debugging With GDB》: 5.2 Continuing and Stepping

@@ -286,11 +286,6 @@ $6 = 6227020800
 
 至此，GDB入门介绍结束，其中90%的内容都来自于《软件调试实战》这本书的第3章，有兴趣的可以去看看原书，里面不止有GDB的介绍。
 
-### 参考资料:
-
-- 《软件调试实战》
-
-
 ### 附录：调试命令一览
 
 | 命令名称                | GDB语法                 |
@@ -340,3 +335,6 @@ $6 = 6227020800
 | 选择栈帧                | frame _arg_             |
 | 输出帧描述              | info frame              |
 
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  3 Getting to the Root – Source Code Debuggers

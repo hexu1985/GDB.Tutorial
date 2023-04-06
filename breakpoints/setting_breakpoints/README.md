@@ -161,4 +161,3 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.4.1 Setting Breakpoints in GDB
-- 《Debugging With GDB》: 5.1.1 Setting Breakpoints

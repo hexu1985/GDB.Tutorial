@@ -101,4 +101,3 @@ Fibonacci(3) is 3.
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.11 Breakpoint Command Lists
-- 《Debugging With GDB》: 5.1.7 Breakpoint Command Lists

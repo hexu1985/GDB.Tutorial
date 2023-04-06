@@ -167,4 +167,3 @@ clear命令使用与创建断点相同的语法删除断点。
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.7.1 Deleting Breakpoints in GDB
-- 《Debugging With GDB》: 5.1.4 Deleting Breakpoints

@@ -132,4 +132,3 @@
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.10 Conditional Breakpoints
-- 《Debugging With GDB》: 5.1.6 Break Conditions
