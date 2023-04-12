@@ -11,6 +11,7 @@ print 命令会计算和打印用程序语言写的表达式的值
     $ gdb bintree
     (gdb) break 37
     Breakpoint 1 at 0x75a: file bintree.c, line 37.
+    (gdb) set args 12 8 5 19 16
     (gdb) run
     Starting program: /home/hexu/git/GDB.Tutorial/code/c/bintree/origin/bintree 12 8 5 19 16
     

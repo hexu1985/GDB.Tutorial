@@ -6,9 +6,11 @@
 
 ### [GDB中的断点](breakpoints)
 
-### [GDB中的检查和设置变量](variables)
+### [在GDB中检查数据](examining_data)
 
-### [GDB调试之图形化界面（TUI）](tui)
+### [在GDB中改变执行](altering_execution)
+
+### [GDB图形化界面(TUI)](tui)
 
 ### [CGDB介绍](cgdb)
 
