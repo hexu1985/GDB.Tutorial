@@ -56,3 +56,6 @@ i = 4
 j = 6
 (gdb)
 ```
+
+### 参考资料:
+- 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 3.2.6 Monitoring Local Variables
