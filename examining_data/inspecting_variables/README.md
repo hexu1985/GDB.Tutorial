@@ -61,3 +61,5 @@ print 命令会计算和打印用程序语言写的表达式的值
 - s 如果可能的话，以字符串形式打印。用这个格式，指向单字节数据的指针将以 nll 结尾的字符串打印，单字节数据的数组则会以定长字符串打印。  
     其它的值以它们原本类型打印。
 
+### 参考资料:
+- 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 3.2.1 Inspection in GDB, 3.2.8 Advanced Options for Print and Display
