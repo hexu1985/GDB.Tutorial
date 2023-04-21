@@ -56,6 +56,41 @@ $7 = {static root = 0x555555768e70, val = 12, left = 0x555555768e90, right = 0x0
 我们可以看到`p *tmp`类似于C程序的情况，只是现在还输出了类node的static变量root的值。  
 另外GDB的ptype命令可以很方便地快速浏览类的结构，通过命令`ptype class node`。
 
+如果结构体的成员比较多，这种显示会显得杂乱无章，不方便查看每一个成员的数据，  
+GDB还提供了一个使显示更加漂亮的选项，命令为set print pretty。
+```
+$ g++ -g3 -Wall -Wextra -o bintree bintree.cc
+$ gdb bintree
+(gdb) break 37
+Breakpoint 1 at 0x997: file bintree.cc, line 37.
+(gdb) set args 12 8 5 19 16
+(gdb) run
+Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/bintree++/bintree 12 8 5 19 16
+
+Breakpoint 1, node::insert (x=8) at bintree.cc:37
+37              if (x < tmp->val)
+(gdb) p *tmp
+$1 = {static root = 0x555555768e70, val = 12, left = 0x0, right = 0x0}
+(gdb) c
+Continuing.
+
+Breakpoint 1, node::insert (x=5) at bintree.cc:37
+37              if (x < tmp->val)
+(gdb) p *tmp
+$2 = {static root = 0x555555768e70, val = 12, left = 0x555555768e90, right = 0x0}
+(gdb) set print pretty
+(gdb) show print pretty
+Pretty formatting of structures is on.
+(gdb) p *tmp
+$3 = {
+  static root = 0x555555768e70,
+  val = 12,
+  left = 0x555555768e90,
+  right = 0x0
+}
+(gdb)
+```
+
 还有，需要记住，GDB需要根据与C++使用的相同作用域规则来指定变量。例如：
 
 ```
