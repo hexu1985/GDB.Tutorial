@@ -147,5 +147,19 @@
     $3 = {0, 0, 0, 12, 0 <repeats 21 times>}
     ```
 
+5. 我们还可以通过set print array on命令，让显示数组时更方便查看。比如：
+    ```
+    (gdb) p *x@25
+    $2 = {0, 0, 0, 12, 0 <repeats 21 times>}
+    (gdb) set print array on
+    (gdb) p *x@25
+    $4 =   {0,
+      0,
+      0,
+      12,
+      0 <repeats 21 times>}
+    (gdb)
+    ```
+
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 3.2.4 Inspecting Dynamic Arrays
