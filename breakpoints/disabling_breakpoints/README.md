@@ -26,6 +26,197 @@
 
 - enable once breakpoint-list
     临时激活指定的断点。GDB 会在这个断点中断程序之后立即禁用它。
+    ```
+    $ gcc -g3 -Wall -Wextra -o test4 test4.c
+    $ gdb test4
+    (gdb) b test_fun_x
+    Breakpoint 1 at 0x63e: file test4.c, line 6.
+    (gdb) disable 1
+    (gdb) enable once 1
+    (gdb) r
+    Starting program: /home/hexu/git/GDB.Tutorial/code/c/test4/test4
+    execute test_fun_x
+    
+    Breakpoint 1, test_fun_x () at test4.c:6
+    6               printf("test fun x\n");
+    (gdb) c
+    Continuing.
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    [Inferior 1 (process 14488) exited normally]
+    (gdb)
+    ```
+
+- enable delete breakpoint-list
+    激活断点中断一次，然后删除之。GDB 在程序中断后立即删除这类断点。这类断点用tbreak 命令发起。
+    ```
+    $ gcc -g3 -Wall -Wextra -o test4 test4.c
+    $ gdb test4
+    (gdb) b test_fun_x
+    Breakpoint 1 at 0x63e: file test4.c, line 6.
+    (gdb) disable 1
+    (gdb) enable delete 1
+    (gdb) b test4.c:17
+    Breakpoint 2 at 0x67e: file test4.c, line 17.
+    (gdb) info b
+    Num     Type           Disp Enb Address            What
+    1       breakpoint     del  y   0x000000000000063e in test_fun_x at test4.c:6
+    2       breakpoint     keep y   0x000000000000067e in main at test4.c:17
+    (gdb) r
+    Starting program: /home/hexu/git/GDB.Tutorial/code/c/test4/test4
+    execute test_fun_x
+    
+    Temporary breakpoint 1, test_fun_x () at test4.c:6
+    6               printf("test fun x\n");
+    (gdb) c
+    Continuing.
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    
+    Breakpoint 2, main () at test4.c:17
+    17          return 0;
+    (gdb)
+    ```
+
+- enable count N breakpoint-list
+    启动断点后可以命中N次，但是命中N此后，该断点就会被自动禁用，不会再次命中。
+    ```
+    $ gcc -g3 -Wall -Wextra -o test4 test4.c
+    $ gdb test4
+    (gdb) b test4.c:17
+    Breakpoint 1 at 0x67e: file test4.c, line 17.
+    (gdb) b test_fun_x
+    Breakpoint 2 at 0x63e: file test4.c, line 6.
+    (gdb) disable 2
+    (gdb) enable count 5 2
+    (gdb) info b
+    Num     Type           Disp Enb Address            What
+    1       breakpoint     keep y   0x000000000000067e in main at test4.c:17
+    2       breakpoint     dis  y   0x000000000000063e in test_fun_x at test4.c:6
+            disable after next 5 hits
+    (gdb) r
+    Starting program: /home/hexu/git/GDB.Tutorial/code/c/test4/test4
+    execute test_fun_x
+    
+    Breakpoint 2, test_fun_x () at test4.c:6
+    6               printf("test fun x\n");
+    (gdb) c
+    Continuing.
+    execute test_fun_x
+    
+    Breakpoint 2, test_fun_x () at test4.c:6
+    6               printf("test fun x\n");
+    (gdb) c
+    Continuing.
+    test fun x
+    execute test_fun_x
+    
+    Breakpoint 2, test_fun_x () at test4.c:6
+    6               printf("test fun x\n");
+    (gdb) c
+    Continuing.
+    test fun x
+    execute test_fun_x
+    
+    Breakpoint 2, test_fun_x () at test4.c:6
+    6               printf("test fun x\n");
+    (gdb) c
+    Continuing.
+    test fun x
+    execute test_fun_x
+    
+    Breakpoint 2, test_fun_x () at test4.c:6
+    6               printf("test fun x\n");
+    (gdb) c
+    Continuing.
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    
+    Breakpoint 1, main () at test4.c:17
+    17          return 0;
+    (gdb)
+    ```
+
+- ignore breakpoint-number N
+    与条件断点类似，即在设置断点时可以指定接下来的N次命中都忽略，直到第N+1次命中时运行才暂停。
+    ```
+    $ gcc -g3 -Wall -Wextra -o test4 test4.c
+    $ gdb test4
+    (gdb) b test_fun_x
+    Breakpoint 1 at 0x63e: file test4.c, line 6.
+    (gdb) ignore 1 7
+    Will ignore next 7 crossings of breakpoint 1.
+    (gdb) r
+    Starting program: /home/hexu/git/GDB.Tutorial/code/c/test4/test4
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    test fun x
+    execute test_fun_x
+    
+    Breakpoint 1, test_fun_x () at test4.c:6
+    6               printf("test fun x\n");
+    (gdb) up
+    #1  0x0000555555554674 in main () at test4.c:14
+    14                      test_fun_x();
+    (gdb) p i
+    $1 = 7
+    (gdb)
+    ```
+    
 
 断点有四种激活状态中的任意一种：
 1. 已激活的（Enabled）。断点会中断程序。这个状态是用 break 命令发起的。
