@@ -25,8 +25,9 @@
 ### [在GDB中改变执行](altering_execution)
 - [调用程序函数](altering_execution/calling_program_functions)
 
-### [在GDB中调试C++程序](debug_cxx_prog)
-- [检查C++对象](debug_cxx_prog/inspecting_cxx_object)
+### [在GDB中调试C++程序](debugging_cxx_prog)
+- [检查C++变量](debugging_cxx_prog/inspecting_variables)
+- [设置断点](debugging_cxx_prog/setting_breakpoints)
 
 ### [GDB图形化界面(TUI)](tui)
 
