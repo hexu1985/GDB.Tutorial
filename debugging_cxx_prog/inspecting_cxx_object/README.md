@@ -18,20 +18,6 @@ Breakpoint 1, node::insert (x=8) at bintree.cc:37
 $1 = {static root = 0x555555768e70, val = 12, left = 0x0, right = 0x0}
 (gdb) p *root
 $2 = {static root = 0x555555768e70, val = 12, left = 0x0, right = 0x0}
-(gdb) ptype node
-type = void (node * const, int)
-(gdb) ptype class node
-type = class node {
-  public:
-    static node *root;
-    int val;
-    node *left;
-    node *right;
-
-    node(int);
-    static void insert(int);
-    static void printtree(node *);
-}
 (gdb) c
 Continuing.
 
@@ -55,6 +41,24 @@ $7 = {static root = 0x555555768e70, val = 12, left = 0x555555768e90, right = 0x0
 
 我们可以看到`p *tmp`类似于C程序的情况，只是现在还输出了类node的static变量root的值。  
 另外GDB的ptype命令可以很方便地快速浏览类的结构，通过命令`ptype class node`。
+
+```
+$ g++ -g3 -Wall -Wextra -o bintree bintree.cc
+$ gdb bintree
+(gdb) ptype node
+type = class node {
+  public:
+    static node *root;
+    int val;
+    node *left;
+    node *right;
+
+    node(int);
+    static void insert(int);
+    static void printtree(node *);
+}
+(gdb) 
+```
 
 如果结构体的成员比较多，这种显示会显得杂乱无章，不方便查看每一个成员的数据，  
 GDB还提供了一个使显示更加漂亮的选项，命令为set print pretty。

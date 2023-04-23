@@ -17,7 +17,6 @@
 
 ### [在GDB中检查数据](examining_data/)
 - [检查变量](examining_data/inspecting_variables)
-- [检查C++变量](examining_data/inspecting_variables_in_cxx)
 - [自动显示](examining_data/automatic_display)
 - [检查数组](examining_data/inspecting_arrays)
 - [监视局部变量](examining_data/monitoring_local_variables)
@@ -25,6 +24,9 @@
 
 ### [在GDB中改变执行](altering_execution)
 - [调用程序函数](altering_execution/calling_program_functions)
+
+### [在GDB中调试C++程序](debug_cxx_prog)
+- [检查C++对象](debug_cxx_prog/inspecting_cxx_object)
 
 ### [GDB图形化界面(TUI)](tui)
 
