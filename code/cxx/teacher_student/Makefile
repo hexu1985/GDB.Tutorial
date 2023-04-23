@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -g3 -Wall -Wextra
 
 SOURCES = $(shell ls *.cpp)
-TARGET = chapter_3
+TARGET = teacher_student
 
 all: $(TARGET)
 	@echo "TARGET = $(TARGET)" 

@@ -149,8 +149,8 @@ GDB中有许多指定断点的方式，下面是一些最常见的方法。
     可以用 rbreak 命令在一个程序里的所有函数上设置断点，例如： `(gdb) rbreak .`
 
     ```
-    $ g++ -g3 -Wall -Wextra -o chapter_3 main.cpp student.cpp teacher.cpp
-    $ gdb chapter_3
+    $ g++ -g3 -Wall -Wextra -o teacher_student main.cpp student.cpp teacher.cpp
+    $ gdb teacher_student
     (gdb) rbreak .*Name
     Breakpoint 1 at 0xcee: file student.cpp, line 12.
     const char *Student::Name();

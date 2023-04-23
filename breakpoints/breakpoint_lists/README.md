@@ -50,18 +50,18 @@ info break [n]
 断点号列的形式是断点号.位置号。
 例如：
 ```
-g++ -g3 -Wall -Wextra -o chapter_3.3 chapter_3.3.cpp -lpthread
-(gdb) break test_fun
-Breakpoint 1 at 0x16d7: test_fun. (4 locations)
+$ g++ -g3 -Wall -Wextra -o overload overload.cc
+$ gdb overload
+(gdb) break C::foo
+Breakpoint 1 at 0x71d: foo. (3 locations)
 (gdb) info breakpoints
 Num     Type           Disp Enb Address            What
 1       breakpoint     keep y   <MULTIPLE>
-1.1                         y     0x00000000000016d7 in test_fun(int) at chapter_3.3.cpp:76
-1.2                         y     0x00000000000016fc in test_fun(char const*) at chapter_3.3.cpp:80
-1.3                         y     0x0000000000002246 in test_1::test_fun() at chapter_3.3.cpp:52
-1.4                         y     0x00000000000022fe in test_2::test_fun() at chapter_3.3.cpp:70
+1.1                         y     0x000000000000071d in C::foo(int) at overload.cc:10
+1.2                         y     0x0000000000000736 in C::foo() const at overload.cc:11
+1.3                         y     0x0000000000000752 in C::foo(char, bool) at overload.cc:12
+(gdb)
 ```
-
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.3.1 Breakpoint Lists in GDB
