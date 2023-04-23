@@ -3,12 +3,28 @@
 ## Table of contents
 
 ### [GDB入门](getting_started)
+- [一个GDB会话样例](getting_started/a_sample_gdb_session)
 
 ### [GDB中的断点](breakpoints)
+- [设置断点](breakpoints/setting_breakpoints)
+- [打印断点](breakpoints/breakpoint_lists)
+- [删除断点](breakpoints/deleting_breakpoints)
+- [禁用断点](breakpoints/disabling_breakpoints)
+- [恢复执行](breakpoints/resuming_execution)
+- [条件断点](breakpoints/conditional_breakpoints)
+- [断点命令列表](breakpoints/breakpoint_command_lists)
+- [设置监视点](breakpoints/setting_watchpoints)
 
-### [在GDB中检查数据](examining_data)
+### [在GDB中检查数据](examining_data/)
+- [检查变量](examining_data/inspecting_variables)
+- [检查C++变量](examining_data/inspecting_variables_in_cxx)
+- [自动显示](examining_data/automatic_display)
+- [检查数组](examining_data/inspecting_arrays)
+- [监视局部变量](examining_data/monitoring_local_variables)
+- [直接检查内存](examining_data/examining_memory_directly)
 
 ### [在GDB中改变执行](altering_execution)
+- [调用程序函数](altering_execution/calling_program_functions)
 
 ### [GDB图形化界面(TUI)](tui)
 
