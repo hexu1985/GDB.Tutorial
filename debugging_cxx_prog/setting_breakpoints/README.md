@@ -83,3 +83,49 @@ int C::foo(char, bool);
 int C::foo(int);
 (gdb)
 ```
+
+**在模板化的函数中设置断点**
+
+对于 C++模板函数，函数里一个给定的行可以对应于任意数量的实例。在这种情况下，GDB 会在这些相关的位置插入断点。  
+一个对应于多个位置的断点可能会用多行来显示断点信息表–一个表头行，接下来是每一行对应于每一断点位置。  
+表头行在地址列里有’<MULTIPLE>’。每个位置有单独的行，这一行包含位置的实际地址，和那个位置对应的函数名。  
+断点号列的形式是断点号.位置号。  
+
+```
+$ g++ -g3 -Wall -Wextra -o break_template break_template.cc
+$ gdb break_template
+(gdb) list
+2       /* Copyright (c) 2008 Thorsten Groetker, Ulrich Holtmann, Holger Keding, 
+3       Markus Wloka. All rights reserved. Your use or disclosure of this source code 
+4       is subject to the terms and conditions of the end user license agreement (EULA)
+5       that is part of this software package. */
+6
+7       #include <iostream>
+8
+9       template <class T> 
+10      void myFunction(T value)
+11      { 
+(gdb) list
+12          std::cout << "got " << value << std::endl; 
+13      }
+14       
+15      int main(int argc, char* argv[]) {
+16          myFunction(100);
+17          myFunction('A');
+18          myFunction(true);
+19          return 0;
+20      }
+(gdb) break break_template.cc:12
+Breakpoint 1 at 0xa67: break_template.cc:12. (3 locations)
+(gdb) info breakpoints 
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   <MULTIPLE>         
+1.1                         y     0x0000000000000a67 in myFunction<int>(int) at break_template.cc:12
+1.2                         y     0x0000000000000aaf in myFunction<char>(char) at break_template.cc:12
+1.3                         y     0x0000000000000af8 in myFunction<bool>(bool) at break_template.cc:12
+(gdb)
+```
+
+将断点号.位置号作为参数传递给 enable 何 disable 命令，每个位置就可以被单独的激活或者禁用。  
+注意，不能从列表里删除一个单独的位置，只能删除从属于父断点的整个位置列表（用 delete num 命令，num 是父断点的编号，上面例子里是 1）。  
+禁用或者激活父断点影响所有属于这个断点的位置。
