@@ -129,3 +129,8 @@ Num     Type           Disp Enb Address            What
 将断点号.位置号作为参数传递给 enable 何 disable 命令，每个位置就可以被单独的激活或者禁用。  
 注意，不能从列表里删除一个单独的位置，只能删除从属于父断点的整个位置列表（用 delete num 命令，num 是父断点的编号，上面例子里是 1）。  
 禁用或者激活父断点影响所有属于这个断点的位置。
+
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.1 Setting Breakpoints in C++ Functions, Methods, and Operators
+- 《The Developer’s Guide to Debugging》:  10.2 Setting Breakpoints in Templatized Functions and C++ Classes
