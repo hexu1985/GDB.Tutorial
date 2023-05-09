@@ -62,3 +62,38 @@
 
 **用step-into命令进入到隐式函数中**
 
+看一下第46行的show(X)语句。看起来函数main()是直接调用函数show()，但它对类STR的构造函数有一个  
+隐藏的调用。调用此构造函数的原因在于函数show()使用了STR参数，而不是使用STR对象的引用，因此编译器  
+在调用函数之前必须创建参数的一个副本。在调试器前进到第46行，并进入到函数调用中，STR构造函数被调用了。  
+然后继续使用`step-into`命令来前进，直到达到函数show()。
+
+```
+$ g++ -g3 -Wall -Wextra -o break_str break_str.cc
+$ gdb break_str
+(gdb) break 46
+Breakpoint 1 at 0xf42: file break_str.cc, line 46.
+(gdb) run
+Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/break_str/break_str
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffdcf8) at break_str.cc:46
+46          show(x);
+(gdb) step
+STR::STR (this=0x7fffffffdbd0, a=...) at break_str.cc:10
+10          STR(const STR& a) {
+(gdb) step
+11              s=a.s;
+(gdb) step
+12              num++;
+(gdb) step
+13          }
+(gdb) step
+show (z=...) at break_str.cc:41
+41          std::cout << z.num_objs() << ": " << z.c_str() << std::endl;
+(gdb)
+```
+
+`step-into`命令可以进入任何隐式函数调用中，因此它是查找隐式函数的好方法。当要理解的重要一点是，  
+`step-into`命令通常只会在带有调试信息的地方停止。这意味着不带调试信息的隐式函数不容易找到。
+
+注意，`step-into`命令
+
