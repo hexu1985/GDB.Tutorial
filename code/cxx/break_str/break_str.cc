@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+
 // example of less-than-well-written class
 class STR {
 public:
@@ -33,7 +34,6 @@ private:
     static int num;  // total #objects of this class
     std::string s;
 };
-
 int STR::num=0;  
 
 void show( STR z )

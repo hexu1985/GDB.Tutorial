@@ -11,47 +11,47 @@
 ```
   1 #include <string>
   2 #include <iostream>
-  3 // example of less-than-well-written class
-  4 class STR {
-  5 public:
-  6     STR(const char* a) {
-  7         s=a;
-  8         num++;
-  9     }
- 10     STR(const STR& a) {
- 11         s=a.s;
- 12         num++;
- 13     }
- 14     ~STR() {
- 15         num--;
- 16     }
- 17     const char* c_str() const {
- 18         return s.c_str();
- 19     }
- 20     const STR& operator+ (const STR& a) {
- 21         s += a.s; return *this;
- 22     }
- 23     int num_objs() const {
- 24         return num;
- 25     }
- 26     STR operator* (int num_copies) const {
- 27         std::string tmp("");
- 28         for (int n=0; n<num_copies;n++)
- 29             tmp += s;
- 30         return STR(tmp.c_str());
- 31     }
- 32 private:
- 33     static int num;  // total #objects of this class
- 34     std::string s;
- 35 };
- 36
+  3
+  4 // example of less-than-well-written class
+  5 class STR {
+  6 public:
+  7     STR(const char* a) {
+  8         s=a;
+  9         num++;
+ 10     }
+ 11     STR(const STR& a) {
+ 12         s=a.s;
+ 13         num++;
+ 14     }
+ 15     ~STR() {
+ 16         num--;
+ 17     }
+ 18     const char* c_str() const {
+ 19         return s.c_str();
+ 20     }
+ 21     const STR& operator+ (const STR& a) {
+ 22         s += a.s; return *this;
+ 23     }
+ 24     int num_objs() const {
+ 25         return num;
+ 26     }
+ 27     STR operator* (int num_copies) const {
+ 28         std::string tmp("");
+ 29         for (int n=0; n<num_copies;n++)
+ 30             tmp += s;
+ 31         return STR(tmp.c_str());
+ 32     }
+ 33 private:
+ 34     static int num;  // total #objects of this class
+ 35     std::string s;
+ 36 };
  37 int STR::num=0;
- 38 
+ 38
  39 void show( STR z )
  40 {
  41     std::cout << z.num_objs() << ": " << z.c_str() << std::endl;
  42 }
- 43 
+ 43
  44 int main(int argc, char* argv[]) {
  45     STR x="abc";
  46     show(x);
@@ -75,17 +75,17 @@ Breakpoint 1 at 0xf42: file break_str.cc, line 46.
 (gdb) run
 Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/break_str/break_str
 
-Breakpoint 1, main (argc=1, argv=0x7fffffffdcf8) at break_str.cc:46
+Breakpoint 1, main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:46
 46          show(x);
 (gdb) step
-STR::STR (this=0x7fffffffdbd0, a=...) at break_str.cc:10
-10          STR(const STR& a) {
+STR::STR (this=0x7fffffffdbb0, a=...) at break_str.cc:11
+11          STR(const STR& a) {
 (gdb) step
-11              s=a.s;
+12              s=a.s;
 (gdb) step
-12              num++;
+13              num++;
 (gdb) step
-13          }
+14          }
 (gdb) step
 show (z=...) at break_str.cc:41
 41          std::cout << z.num_objs() << ": " << z.c_str() << std::endl;
@@ -133,25 +133,25 @@ Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/break_str/break_str
 Breakpoint 1, main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
 47          show((x+"def") * 3);
 (gdb) step
-STR::STR (this=0x7fffffffdb90, a=0x55555555537d "def") at break_str.cc:6
-6           STR(const char* a) {
+STR::STR (this=0x7fffffffdb90, a=0x55555555537d "def") at break_str.cc:7
+7           STR(const char* a) {
 (gdb) finish
-Run till exit from #0  STR::STR (this=0x7fffffffdb90, a=0x55555555537d "def") at break_str.cc:6
+Run till exit from #0  STR::STR (this=0x7fffffffdb90, a=0x55555555537d "def") at break_str.cc:7
 0x0000555555554f80 in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
 47          show((x+"def") * 3);
 (gdb) step
-STR::operator+ (this=0x7fffffffdb70, a=...) at break_str.cc:21
-21              s += a.s; return *this;
+STR::operator+ (this=0x7fffffffdb70, a=...) at break_str.cc:22
+22              s += a.s; return *this;
 (gdb) finish
-Run till exit from #0  STR::operator+ (this=0x7fffffffdb70, a=...) at break_str.cc:21
+Run till exit from #0  STR::operator+ (this=0x7fffffffdb70, a=...) at break_str.cc:22
 0x0000555555554f93 in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
 47          show((x+"def") * 3);
 Value returned is $1 = (const STR &) @0x7fffffffdb70: {static num = 2, s = "abcdef"}
 (gdb) step
-STR::operator* (this=0x7fffffffdb70, num_copies=3) at break_str.cc:26
-26          STR operator* (int num_copies) const {
+STR::operator* (this=0x7fffffffdb70, num_copies=3) at break_str.cc:27
+27          STR operator* (int num_copies) const {
 (gdb) finish
-Run till exit from #0  STR::operator* (this=0x7fffffffdb70, num_copies=3) at break_str.cc:26
+Run till exit from #0  STR::operator* (this=0x7fffffffdb70, num_copies=3) at break_str.cc:27
 0x0000555555554faa in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
 47          show((x+"def") * 3);
 Value returned is $2 = {static num = 3, s = "abcdefabcdefabcdef"}
@@ -161,9 +161,85 @@ show (z=...) at break_str.cc:41
 (gdb)
 ```
 
-从第47行开始，也就是从假设地伪代码行47.1开始。`step-into`命令进入到第6行的STR构造函数中。  
+从第47行开始，也就是从假设的伪代码行47.1开始。`step-into`命令进入到第7行的STR构造函数中。  
 `step-out`命令离开构造函数，并在第47.2行停止。注意，GDB报告地位置是`0x<address> ... at main.cpp:47`  
 所有伪代码行47.1至47.4都属于同一个源代码行47，但它们具有不同的程序地址，所以可以区分它们。  
 执行里一系列`step-into`、`step-out`、`step-into`......命令后，最终就会进入到函数show()中。
 
 
+**利用临时断点跳过隐式函数**
+
+在有些情况下，我们可能希望从第47行直接进入到函数show()中，而跳过所有计算函数参数的隐式函数调用。  
+者可以通过设置临时断点来实现，方法是使用GDB命令tbreak：
+
+```
+$ g++ -g3 -Wall -Wextra -o break_str break_str.cc
+$ gdb break_str
+(gdb) break 47
+Breakpoint 1 at 0xf6d: file break_str.cc, line 47.
+(gdb) run
+Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/break_str/break_str
+2: abc
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+47          show((x+"def") * 3);
+(gdb) tbreak show
+Temporary breakpoint 2 at 0x555555554ea7: file break_str.cc, line 41.
+(gdb) cont
+Continuing.
+
+Temporary breakpoint 2, show (z=...) at break_str.cc:41
+41          std::cout << z.num_objs() << ": " << z.c_str() << std::endl;
+(gdb)
+```
+
+**从隐式函数调用返回**
+
+如果在嵌套的隐式函数调用中失去线索，也可以使用临时断点。再次从第47行开始，  
+反复使用`step-into`命令，直到到达第7行中的第二个构造函数调用。假设现在失去了线索，  
+因此只想返回第47行，以便再次使用`step-into`命令进入隐式函数。这时可以结合使用  
+栈导航命令up和tbreak前进到第47行的下一条伪代码语句，具体方法如下：
+
+```
+$ g++ -g3 -Wall -Wextra -o break_str break_str.cc
+$ gdb break_str
+(gdb) break 47
+Breakpoint 1 at 0xf6d: file break_str.cc, line 47.
+(gdb) run
+Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/break_str/break_str
+2: abc
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+47          show((x+"def") * 3);
+(gdb) step
+STR::STR (this=0x7fffffffdb90, a=0x55555555537d "def") at break_str.cc:7
+7           STR(const char* a) {
+(gdb) step (repeatedly until you reach line 7 again)
+...
+(gdb) step
+31              return STR(tmp.c_str());
+(gdb) step
+STR::STR (this=0x7fffffffdbb0, a=0x555555769280 "abcdefabcdefabcdef") at break_str.cc:7
+7           STR(const char* a) {
+(gdb) backtrace
+#0  STR::STR (this=0x7fffffffdbb0, a=0x555555769280 "abcdefabcdefabcdef") at break_str.cc:7
+#1  0x0000555555555286 in STR::operator* (this=0x7fffffffdb70, num_copies=3) at break_str.cc:31
+#2  0x0000555555554faa in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+(gdb) up
+#1  0x0000555555555286 in STR::operator* (this=0x7fffffffdb70, num_copies=3) at break_str.cc:31
+31              return STR(tmp.c_str());
+(gdb) up
+#2  0x0000555555554faa in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+47          show((x+"def") * 3);
+(gdb) tbreak
+Temporary breakpoint 2 at 0x555555554faa: file break_str.cc, line 47.
+(gdb) cont
+Continuing.
+
+Temporary breakpoint 2, 0x0000555555554faa in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+47          show((x+"def") * 3);
+(gdb) step
+show (z=...) at break_str.cc:41
+41          std::cout << z.num_objs() << ": " << z.c_str() << std::endl;
+(gdb)
+```
