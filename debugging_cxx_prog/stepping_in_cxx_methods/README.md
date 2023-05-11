@@ -115,3 +115,55 @@ show (z=...) at break_str.cc:41
 48 return 0;
 ```
 
+通过反复执行`step-into`命令，可以到达show()的函数体，但这将依次经过函数体的语句47.1至47.3，包括  
+这些行中执行的任何函数调用。这样就需要执行大量的`step-into`命令，因此很容易迷失在低层实现细节中。  
+在GDB中可以使用finish命令，快捷地离开当前函数。这样，我们就可以更快地从第47行进入第41行地show()函数。
+
+具体细节如下：
+
+```
+$ g++ -g3 -Wall -Wextra -o break_str break_str.cc
+$ gdb break_str
+(gdb) break 47
+Breakpoint 1 at 0xf6d: file break_str.cc, line 47.
+(gdb) run
+Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/break_str/break_str
+2: abc
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+47          show((x+"def") * 3);
+(gdb) step
+STR::STR (this=0x7fffffffdb90, a=0x55555555537d "def") at break_str.cc:6
+6           STR(const char* a) {
+(gdb) finish
+Run till exit from #0  STR::STR (this=0x7fffffffdb90, a=0x55555555537d "def") at break_str.cc:6
+0x0000555555554f80 in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+47          show((x+"def") * 3);
+(gdb) step
+STR::operator+ (this=0x7fffffffdb70, a=...) at break_str.cc:21
+21              s += a.s; return *this;
+(gdb) finish
+Run till exit from #0  STR::operator+ (this=0x7fffffffdb70, a=...) at break_str.cc:21
+0x0000555555554f93 in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+47          show((x+"def") * 3);
+Value returned is $1 = (const STR &) @0x7fffffffdb70: {static num = 2, s = "abcdef"}
+(gdb) step
+STR::operator* (this=0x7fffffffdb70, num_copies=3) at break_str.cc:26
+26          STR operator* (int num_copies) const {
+(gdb) finish
+Run till exit from #0  STR::operator* (this=0x7fffffffdb70, num_copies=3) at break_str.cc:26
+0x0000555555554faa in main (argc=1, argv=0x7fffffffdcd8) at break_str.cc:47
+47          show((x+"def") * 3);
+Value returned is $2 = {static num = 3, s = "abcdefabcdefabcdef"}
+(gdb) step
+show (z=...) at break_str.cc:41
+41          std::cout << z.num_objs() << ": " << z.c_str() << std::endl;
+(gdb)
+```
+
+从第47行开始，也就是从假设地伪代码行47.1开始。`step-into`命令进入到第6行的STR构造函数中。  
+`step-out`命令离开构造函数，并在第47.2行停止。注意，GDB报告地位置是`0x<address> ... at main.cpp:47`  
+所有伪代码行47.1至47.4都属于同一个源代码行47，但它们具有不同的程序地址，所以可以区分它们。  
+执行里一系列`step-into`、`step-out`、`step-into`......命令后，最终就会进入到函数show()中。
+
+
