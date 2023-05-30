@@ -17,8 +17,8 @@ commands 后面接命令行。最后输入一行 end 来结束命令。
 ```
 $ g++ -g3 -Wall -Wextra -o break_str break_str.cc
 $ gdb break_str
-(gdb) break break_str.cc:7
-Breakpoint 1 at 0x10bd: file break_str.cc, line 7.
+(gdb) break break_str.cc:8
+Breakpoint 1 at 0x157d: file break_str.cc, line 8.
 (gdb) commands 1
 Type commands for breakpoint(s) 1, one per line.
 End with a line saying just "end".
@@ -28,12 +28,13 @@ End with a line saying just "end".
 > end
 (gdb) run
 Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/break_str/break_str
-STR CTOR with a=0x55555379 "abc"
+warning: Error disabling address space randomization: Operation not permitted
+STR CTOR with a=0x8eb9b009 "abc"
 2: abc
-STR CTOR with a=0x5555537d "def"
-STR CTOR with a=0x55769280 "abcdefabcdefabcdef"
+STR CTOR with a=0x8eb9b00d "def"
+STR CTOR with a=0x8ef932c0 "abcdefabcdefabcdef"
 3: abcdefabcdefabcdef
-[Inferior 1 (process 28173) exited normally]
+[Inferior 1 (process 509) exited normally]
 (gdb)
 ```
 
