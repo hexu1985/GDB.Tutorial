@@ -6,7 +6,12 @@ that is part of this software package. */
 
 class MyClass {
 public:
-    MyClass() {int i; for(i=0;i<10;i++) a[i]= veryImportantStatic+i;}
+    MyClass() {
+        int i; 
+        for(i=0;i<10;i++) 
+            a[i]= veryImportantStatic+i;
+    }
+
     int a[10];
     static int veryImportantStatic;
 };

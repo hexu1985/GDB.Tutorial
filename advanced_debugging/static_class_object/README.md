@@ -29,10 +29,15 @@ veryImportantStatic:
   6
   7 class MyClass {
   8 public:
-  9     MyClass() {int i; for(i=0;i<10;i++) a[i]= veryImportantStatic+i;}
- 10     int a[10];
- 11     static int veryImportantStatic;
- 12 };
+  9     MyClass() {
+ 10         int i;
+ 11         for(i=0;i<10;i++)
+ 12             a[i]= veryImportantStatic+i;
+ 13     }
+ 14
+ 15     int a[10];
+ 16     static int veryImportantStatic;
+ 17 };
 
   1 /* MyClass.cc */
   2 /* Copyright (c) 2008 Thorsten Groetker, Ulrich Holtmann, Holger Keding,
@@ -80,4 +85,53 @@ otherGlobal.a[3]=3
 $ ./static_conflict2
 otherGlobal.a[3]=45
 ```
+
+从输出结果可以看出，当先链接static_conflict.o时优先初始化static_conflict.cc中的otherGlobal，  
+相反当先链接MyClass.o时优先初始化MyClass.cc中的veryImportantStatic。
+
+
+**识别静态初始化程序的栈跟踪**
+
+构造函数或析构函数的顺序问题可能非常模糊。在搜索这些bug时，最有用的信息就是栈跟踪：
+
+```
+$ g++ -g3 -Wall -Wextra   -c -o static_conflict.o static_conflict.cc
+$ g++ -g3 -Wall -Wextra   -c -o MyClass.o MyClass.cc
+$ g++ -o static_conflict1 static_conflict.o MyClass.o
+$ gdb static_conflict1
+(gdb) break MyClass
+Breakpoint 1 at 0x1212: file MyClass.h, line 9.
+(gdb) break somefunction
+Breakpoint 2 at 0x1149: file MyClass.cc, line 10.
+(gdb) run
+Starting program: /home/hexu/git/GDB.Tutorial/code/cxx/static_conflict/static_conflict2
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 2, somefunction () at MyClass.cc:10
+10      {  return 42;}
+(gdb) bt
+#0  somefunction () at MyClass.cc:10
+#1  0x00005562dae8117e in __static_initialization_and_destruction_0 (__initialize_p=1, __priority=65535) at MyClass.cc:12
+#2  0x00005562dae8119e in _GLOBAL__sub_I__Z12somefunctionv () at MyClass.cc:12
+#3  0x00005562dae8129d in __libc_csu_init ()
+#4  0x00007fbf4a12b010 in __libc_start_main (main=0x5562dae811a0 <main()>, argc=1, argv=0x7fffe736de68, init=0x5562dae81250 <__libc_csu_init>, fini=<optimized out>, rtld_fini=<optimized out>,
+    stack_end=0x7fffe736de58) at ../csu/libc-start.c:264
+#5  0x00005562dae8108e in _start ()
+(gdb) continue
+Continuing.
+
+Breakpoint 1, MyClass::MyClass (this=0x0) at MyClass.h:9
+9           MyClass() {
+(gdb) bt
+#0  MyClass::MyClass (this=0x0) at MyClass.h:9
+#1  0x00005562dae811f5 in __static_initialization_and_destruction_0 (__initialize_p=1, __priority=65535) at static_conflict.cc:10
+#2  0x00005562dae8120f in _GLOBAL__sub_I_otherGlobal () at static_conflict.cc:15
+#3  0x00005562dae8129d in __libc_csu_init ()
+#4  0x00007fbf4a12b010 in __libc_start_main (main=0x5562dae811a0 <main()>, argc=1, argv=0x7fffe736de68, init=0x5562dae81250 <__libc_csu_init>, fini=<optimized out>, rtld_fini=<optimized out>,
+    stack_end=0x7fffe736de58) at ../csu/libc-start.c:264
+#5  0x00005562dae8108e in _start ()
+(gdb)
+```
+
+注意，栈跟踪中并没有main()函数，因为它尚未被调用。
 
