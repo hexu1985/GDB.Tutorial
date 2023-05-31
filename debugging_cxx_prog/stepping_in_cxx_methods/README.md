@@ -243,3 +243,6 @@ show (z=...) at break_str.cc:41
 41          std::cout << z.num_objs() << ": " << z.c_str() << std::endl;
 (gdb)
 ```
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.3 Stepping in C++ Methods
