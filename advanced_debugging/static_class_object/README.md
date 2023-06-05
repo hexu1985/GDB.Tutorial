@@ -135,3 +135,88 @@ Breakpoint 1, MyClass::MyClass (this=0x0) at MyClass.h:9
 
 注意，栈跟踪中并没有main()函数，因为它尚未被调用。
 
+
+**在静态初始化之前连接调试器**
+
+在某些情况下，可能必须将调试器连接到正在运行的进程，然后对初始化例程进行调试。  
+由于静态初始化例程是在程序启动阶段被调用的，所以在连接调试器时，它们已经执行。  
+因此在初始化阶段应减慢程序的执行速度。添加另外一个静态初始化调用，延迟程序的执行，  
+这样就有足够时间连接调试器。
+
+以下代码片段提供了一个示例：
+
+```cpp
+#include <stdlib.h>
+#include <unistd.h>
+
+static int delay_done=0;
+static int ask_mice() {
+    while (!delay_done)
+        sleep(10);
+    return 42;
+}
+
+static int pol = ask_mice();
+```
+
+连接正在运行的进程，在调试器中设置所有需要的断点。然后再改delay_done变量，使程序继续执行。
+
+```
+$ g++ -g3 -Wall -Wextra   -c -o initial_delay.o initial_delay.cc
+$ g++ -o static_conflict1 initial_delay.o static_conflict.o MyClass.o
+$ g++ -o static_conflict2 initial_delay.o MyClass.o static_conflict.o
+$ ./static_conflict1 &
+[1] 15543
+$ sudo gdb static_conflict1 15543
+(gdb) break MyClass
+Breakpoint 1 at 0x55c49ec347a8: file MyClass.h, line 11.
+(gdb) break somefunction
+Breakpoint 2 at 0x55c49ec347db: file MyClass.cc, line 10.
+(gdb) bt
+#0  0x00007f238031f654 in __GI___nanosleep (requested_time=requested_time@entry=0x7fffaf9bdfa0, remaining=remaining@entry=0x7fffaf9bdfa0) at ../sysdeps/unix/sysv/linux/nanosleep.c:28
+#1  0x00007f238031f55a in __sleep (seconds=0) at ../sysdeps/posix/sleep.c:55
+#2  0x000055c49ec346f2 in ask_mice () at initial_delay.cc:17
+#3  0x000055c49ec3471d in __static_initialization_and_destruction_0 (__initialize_p=1, __priority=65535) at initial_delay.cc:21
+#4  0x000055c49ec34739 in _GLOBAL__sub_I_initial_delay.cc(void) () at initial_delay.cc:21
+#5  0x000055c49ec3487d in __libc_csu_init ()
+#6  0x00007f238025cc18 in __libc_start_main (main=0x55c49ec3473b <main()>, argc=1, argv=0x7fffaf9be138, init=0x55c49ec34830 <__libc_csu_init>, fini=<optimized out>, rtld_fini=<optimized out>,
+    stack_end=0x7fffaf9be128) at ../csu/libc-start.c:266
+#7  0x000055c49ec345fa in _start ()
+(gdb) f 2
+#2  0x000055c49ec346f2 in ask_mice () at initial_delay.cc:17
+17              sleep(10);
+(gdb) list
+12      #endif
+13
+14      static int delay_done=0;
+15      static int ask_mice() {
+16          while (!delay_done)
+17              sleep(10);
+18          return 42;
+19      }
+20
+21      static int pol = ask_mice();
+(gdb) set var delay_done=1
+(gdb) continue
+Continuing.
+
+Breakpoint 1, MyClass::MyClass (this=0x55c49ee35040 <otherGlobal>) at MyClass.h:11
+11              for(i=0;i<10;i++)
+(gdb) c
+Continuing.
+
+Breakpoint 2, somefunction () at MyClass.cc:10
+10      {  return 42;}
+(gdb) c
+Continuing.
+otherGlobal.a[3]=3
+[Inferior 1 (process 15543) exited normally]
+(gdb)
+```
+
+注意，这种方法还依赖于静态初始化代码的特定执行顺序，即ask_mice()首先被调用。所以要
+把initial_delay.o放在链接顺序的最前面。
+
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.5 Debugging Static Constructor/Destructor Problems
