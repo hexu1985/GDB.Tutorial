@@ -24,6 +24,7 @@
 
 ### [在GDB中改变执行](altering_execution)
 - [调用程序函数](altering_execution/calling_program_functions)
+- [在GDB中设置变量](altering_execution/setting_variables)
 
 ### [高级调试](advanced_debugging)
 - [在C++中设置断点](advanced_debugging/setting_breakpoints)
