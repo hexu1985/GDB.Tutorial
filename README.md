@@ -31,6 +31,8 @@
 - [进入C++方法](advanced_debugging/stepping_in_cxx_methods)
 - [断点命令](advanced_debugging/breakpoint_commands)
 - [条件断点](advanced_debugging/conditional_breakpoints)
+- [调试静态构造/析构函数](advanced_debugging/static_class_object)
+- [使用观察点](advanced_debugging/using_watchpoints)
 
 ### [GDB图形化界面(TUI)](tui)
 

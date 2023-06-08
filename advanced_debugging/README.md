@@ -4,4 +4,6 @@
 - [进入C++方法](stepping_in_cxx_methods)
 - [断点命令](breakpoint_commands)
 - [条件断点](conditional_breakpoints)
+- [调试静态构造/析构函数](static_class_object)
+- [使用观察点](using_watchpoints)
 
