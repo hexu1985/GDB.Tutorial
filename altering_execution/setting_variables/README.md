@@ -36,7 +36,44 @@ Invalid syntax in expression.
 由于 set 命令有许多子命令，很容易就和程序变量名冲突，用 set variable 命令  
 替代 set 命令就能很好的解决这个问题。
 
+下面给出一个完整的例子：
+
+```
+$ gcc -g3 -Wall -Wextra -o capitalize capitalize.c
+$ gdb capitalize
+(gdb) break 23
+Breakpoint 1 at 0x128d: file capitalize.c, line 23.
+(gdb) run "Foofoo, foobar and Bar!" foo bar
+Starting program: /home/hexu/git/GDB.Tutorial/code/c/capitalize/capitalize "Foofoo, foobar and Bar!" foo bar
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, capitalize_str (str=0x55b701f502a0 "Foofoo, foobar and Bar!", name=0x7fff2f6d281f "foo") at capitalize.c:23
+23              if (strncasecmp(str+n,name,len_name)==0) {
+(gdb) print n
+$1 = 0
+(gdb) c
+Continuing.
+
+Breakpoint 1, capitalize_str (str=0x55b701f502a0 "FOOfoo, foobar and Bar!", name=0x7fff2f6d281f "foo") at capitalize.c:23
+23              if (strncasecmp(str+n,name,len_name)==0) {
+(gdb) print n
+$2 = 4
+(gdb) print str+n
+$3 = 0x55b701f502a4 "oo, foobar and Bar!"
+(gdb) set var n=3
+(gdb) print str+n
+$4 = 0x55b701f502a3 "foo, foobar and Bar!"
+(gdb) delete 1
+(gdb) continue
+Continuing.
+Total 5 hits:
+original: Foofoo, foobar and Bar!
+modified: FOOFOO, FOOBAR and BAR!
+[Inferior 1 (process 76) exited normally]
+(gdb)
+```
 
 ### 参考资料:
 - 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 3.3 Setting Variables from Within GDB/DDD/Eclipse
+- 《The Developer’s Guide to Debugging》:  10.10.1 Changing a Variable
 
