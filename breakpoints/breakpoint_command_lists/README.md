@@ -62,7 +62,7 @@ Fibonacci(3) is 3.
 (gdb)
 ```
 
-如果你指定的命令列表的的哥命令是 silent，通常断点中断的所产生的消息就不会打印。  
+如果你指定的命令列表的首个命令是 silent，通常断点中断的所产生的消息就不会打印。  
 这个在打印一个特定的消息，然后接着继续执行的中断而言是可取的。  
 silent 只在断点命令开头有意义。
 
@@ -99,5 +99,36 @@ Fibonacci(3) is 3.
 (gdb)
 ```
 
+另外，我们还可以在命令列表中调用函数，例如：
+```
+$ gcc -g3 -Wall -Wextra -o bintree bintree.c
+$ gdb bintree
+(gdb) break 37
+Breakpoint 1 at 0x75a: file bintree.c, line 37.
+(gdb) commands 1
+Type commands for breakpoint(s) 1, one per line.
+End with a line saying just "end".
+>printf "*********** current tree ***********\n"
+>call printtree(root)
+>end
+(gdb) set args 12 8 5 19 16
+(gdb) run
+Starting program: /home/hexu/git/GDB.Tutorial/code/c/bintree/origin/bintree 12 8 5 19 16
+
+Breakpoint 1, insert (btp=0x555555755018 <root>, x=8) at bintree.c:37
+37            if (x < tmp->val) {
+*********** current tree ***********
+12
+(gdb) continue
+Continuing.
+
+Breakpoint 1, insert (btp=0x555555755018 <root>, x=5) at bintree.c:37
+37            if (x < tmp->val) {
+*********** current tree ***********
+8
+12
+(gdb)
+```
+
 ### 参考资料:
-- 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.11 Breakpoint Command Lists
+- 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 2.11 Breakpoint Command Lists, 3.2.1 Inspection in GDB

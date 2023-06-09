@@ -1,4 +1,4 @@
-### 在GDB中设置变量
+### 在GDB中修改变量
 
 通过赋值表达式可以改变变量的值。例如：
 
@@ -74,6 +74,5 @@ modified: FOOFOO, FOOBAR and BAR!
 ```
 
 ### 参考资料:
-- 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 3.3 Setting Variables from Within GDB/DDD/Eclipse
 - 《The Developer’s Guide to Debugging》:  10.10.1 Changing a Variable
 
