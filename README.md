@@ -26,6 +26,7 @@
 - [修改变量](altering_execution/changing_variable)
 - [调用函数](altering_execution/calling_function)
 - [从函数里返回](altering_execution/returning_from_function)
+- [在不同的位置上继续执行](altering_execution/continuing_at_a_different_address)
 
 ### [高级调试](advanced_debugging)
 - [在C++中设置断点](advanced_debugging/setting_breakpoints)
