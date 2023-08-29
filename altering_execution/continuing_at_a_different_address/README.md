@@ -47,3 +47,7 @@ modified: FOOfoo, FOOBAR and BAR!
 ```
 
 可以发现，GDB调试时，修改后的字符串现在以"Foofoo..."开头，而不是"FOOfoo..."，因此jump命令有效地跳过了第24行地函数调用change_word(...)。
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.10.5 Skipping or Repeating Individual Statements
+
