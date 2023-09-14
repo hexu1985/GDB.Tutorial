@@ -4,6 +4,7 @@
 
 ### [GDB入门](getting_started)
 - [一个GDB会话样例](getting_started/a_sample_gdb_session)
+- [GDB图形化界面(TUI)](getting_started/tui)
 
 ### [GDB中的断点](breakpoints)
 - [设置断点](breakpoints/setting_breakpoints)
@@ -28,7 +29,7 @@
 - [从函数里返回](altering_execution/returning_from_function)
 - [在不同的位置上继续执行](altering_execution/continuing_at_a_different_address)
 
-### [高级调试](advanced_debugging)
+### [GDB高级调试](advanced_debugging)
 - [在C++中设置断点](advanced_debugging/setting_breakpoints)
 - [进入C++方法](advanced_debugging/stepping_in_cxx_methods)
 - [断点命令](advanced_debugging/breakpoint_commands)
@@ -36,11 +37,9 @@
 - [调试静态构造/析构函数](advanced_debugging/static_class_object)
 - [使用观察点](advanced_debugging/using_watchpoints)
 
-### [GDB图形化界面(TUI)](tui)
-
-### [CGDB介绍](cgdb)
-
-### [在vscode中使用gdb进行调试](vscode)
+### [其他调试器](other_debugger)
+- [CGDB介绍](other_debugger/cgdb)
+- [在vscode中使用gdb进行调试](other_debugger/vscode)
 
 ### 参考链接
 
