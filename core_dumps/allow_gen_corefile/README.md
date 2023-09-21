@@ -47,8 +47,8 @@ $ sudo vim /etc/security/limits.conf
 ```
 
 添加两行：
-- * soft  core unlimited
-- * hard  core unlimited
+- `* soft  core unlimited`
+- `* hard  core unlimited`
 
 ```
 #<domain>      <type>  <item>         <value>
@@ -105,6 +105,14 @@ kernel.core_uses_pid = 1
 kernel.core_pattern = /corefile/core-%e-%p-%t
 ```
 
+4. 关闭apport.service，修改/etc/default/apport 
 
+把/etc/default/apport的enabled修改为0就ok了。
 
+```
+# set this to 0 to disable apport, or to 1 to enable it
+# you can temporarily override this with
+# sudo service apport start force_start=1
+enabled=0
+```
 
