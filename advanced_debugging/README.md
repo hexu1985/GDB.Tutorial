@@ -6,4 +6,5 @@
 - [条件断点](conditional_breakpoints)
 - [调试静态构造/析构函数](static_class_object)
 - [使用观察点](using_watchpoints)
+- [捕捉信号](catching_signals)
 
