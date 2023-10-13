@@ -30,6 +30,7 @@
 - [在不同的位置上继续执行](altering_execution/continuing_at_a_different_address)
 
 ### [读取栈跟踪](reading_stack_traces)
+- [带调试信息的栈跟踪](reading_stack_traces/stack_trace_with_debug_information)
 - [允许生成core文件](reading_stack_traces/allow_coredump)
 
 ### [GDB高级调试](advanced_debugging)
