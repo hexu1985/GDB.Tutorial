@@ -29,6 +29,9 @@
 - [从函数里返回](altering_execution/returning_from_function)
 - [在不同的位置上继续执行](altering_execution/continuing_at_a_different_address)
 
+### [读取栈跟踪](reading_stack_traces)
+- [允许生成core文件](reading_stack_traces/allow_coredump)
+
 ### [GDB高级调试](advanced_debugging)
 - [在C++中设置断点](advanced_debugging/setting_breakpoints)
 - [进入C++方法](advanced_debugging/stepping_in_cxx_methods)
@@ -38,9 +41,6 @@
 - [使用观察点](advanced_debugging/using_watchpoints)
 - [捕捉信号](advanced_debugging/catching_signals)
 - [捕获异常](advanced_debugging/catching_exceptions)
-
-### [读取栈跟踪](reading_stack_traces)
-- [允许生成core文件](reading_stack_traces/allow_gen_corefile)
 
 ### [其他调试器](other_debugger)
 - [CGDB介绍](other_debugger/cgdb)
