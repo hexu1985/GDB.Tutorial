@@ -37,6 +37,7 @@
 - [调试静态构造/析构函数](advanced_debugging/static_class_object)
 - [使用观察点](advanced_debugging/using_watchpoints)
 - [捕捉信号](advanced_debugging/catching_signals)
+- [捕获异常](advanced_debugging/catching_exceptions)
 
 ### [程序崩溃处理](core_dumps)
 - [允许生成core文件](core_dumps/allow_gen_corefile)
