@@ -39,8 +39,8 @@
 - [捕捉信号](advanced_debugging/catching_signals)
 - [捕获异常](advanced_debugging/catching_exceptions)
 
-### [程序崩溃处理](core_dumps)
-- [允许生成core文件](core_dumps/allow_gen_corefile)
+### [读取栈跟踪](reading_stack_traces)
+- [允许生成core文件](reading_stack_traces/allow_gen_corefile)
 
 ### [其他调试器](other_debugger)
 - [CGDB介绍](other_debugger/cgdb)
