@@ -31,6 +31,7 @@
 
 ### [读取栈跟踪](reading_stack_traces)
 - [带调试信息的栈跟踪](reading_stack_traces/stack_trace_with_debug_information)
+- [核心转储](reading_stack_traces/core_dumps)
 - [允许生成core文件](reading_stack_traces/allow_coredump)
 
 ### [GDB高级调试](advanced_debugging)
