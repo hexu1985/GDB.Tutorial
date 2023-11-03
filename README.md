@@ -51,6 +51,8 @@
 - [CGDB介绍](other_debugger/cgdb)
 - [在vscode中使用gdb进行调试](other_debugger/vscode)
 
-### 参考链接
-
+### 参考资料
+- 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》
+- 《The Developer’s Guide to Debugging》
+- 《Debugging with GDB》
 - 《100个gdb小技巧》： <https://wizardforcel.gitbooks.io/100-gdb-tips/content/index.html>

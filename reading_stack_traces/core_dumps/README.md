@@ -62,3 +62,6 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 
 核心转储包含程序已分配的所有数据的一个副本。栈数据也是其中的一部分，
 利用栈数据可以在程序终止后使用调试器来查看栈跟踪。
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.9.7 Core Dumps

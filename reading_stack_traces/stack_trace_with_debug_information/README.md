@@ -54,3 +54,6 @@ Program received signal SIGSEGV, Segmentation fault.
 信号SIGSEGV是一个分段错误，当程序试图访问没有权限的内存地址时，就会发生此错误。
 在本例中，我们访问了地址0x0，这是分段错误的一个常见原因。
 其他致命的信号还有SIGBUS（非法总线地址）、SIGILL（非法指令）和SIGFPE（浮点异常）。
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.9.1 Stack Trace of Source Code Compiled with Debug Information

@@ -146,3 +146,6 @@ Program received signal SIGUSR1, User defined signal 1.
 ```
 
 可以看到，处理程序接收到信号，并计算收到的次数。
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.7  Catching Signals

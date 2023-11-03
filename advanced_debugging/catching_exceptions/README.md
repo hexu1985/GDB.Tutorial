@@ -63,3 +63,5 @@ Catchpoint 2 (exception thrown), 0x00007ffff7a6e7be in __cxa_throw () from /usr/
 
 可以看到，调试器捕获到了C++异常的抛出。
 
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.8  Catching Exceptions

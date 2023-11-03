@@ -125,3 +125,7 @@ Thread 1 (Thread 0x7ffff7fa3740 (LWP 24019)):
 - break 88 thread 3（当线程3到达源代码行88时停止执行）；
 - break 88 thread 3 if x == y（当线程3到达源代码行88，并且变量x和y相等时停止执行）；
 - thread apply all bt（打印当前所有线程的调用栈信息）。
+
+### 参考资料:
+- 《THE ART OF DEBUGGING with GDB, DDD, and Eclipse》: 5.2  Debugging Threaded Code
+

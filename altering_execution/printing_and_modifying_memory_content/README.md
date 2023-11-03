@@ -128,3 +128,6 @@ modified: ABCDEF, FOOBAR AND BAR!
 
 内存的修改并不限于少数几个变量。付出足够的努力和细心，就可以修改全部内存内容。
 当然，也有可能会意外地破坏内存。
+
+### 参考资料:
+- 《The Developer’s Guide to Debugging》:  10.10.6 Printing and Modifying Memory Content
