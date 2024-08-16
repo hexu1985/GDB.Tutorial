@@ -45,7 +45,7 @@
 - [捕获异常](advanced_debugging/catching_exceptions)
 
 ### [多活动上下文中的调试](multiple_activities_context)
-- [调试多线程代码](debugging_threaded_code)
+- [调试多线程代码](multiple_activities_context/debugging_threaded_code)
 
 ### [其他调试器](other_debugger)
 - [CGDB介绍](other_debugger/cgdb)
