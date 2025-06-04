@@ -15,27 +15,41 @@ $ cd factorial
 $ make
 ```
 
-- 启动调试
-
-![启动调试](img/launch_debug01.png)
-
-选择GDB作为调试环境
-
-![选择GDB作为调试环境](img/launch_debug02.png)
-
-选择默认配置
-
-![默认配置](img/launch_debug03.png)
-
-会提示你配置文件launch.json不存在，点击Open launch.json，然后开始下一步的launch.json配置。
-
-![默认launch.json](img/launch_debug04.png)
-
 #### 2. 配置launch.json文件
 
-在上一步结束后，我们可以看到 launch.json 界面。
+按 `F5` 或点击运行 > 添加配置，选择 "C++ (GDB/LLDB)"。
 
 ![初始launch.json文件](img/launch.json01.png)
+
+修改生成的 `launch.json`：
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C Compile"
+        }
+    ]
+}
+```
 
 其中需要注意并修改的是：
 
