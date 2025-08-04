@@ -5,17 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "envFile": "${workspaceFolder}/.env",
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/environ",
-            "args": ["HELLO"],
+            "args": ["TEST"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
-            "environment": [
-                {"name": "HELLO", "value": "WORLD"},
-                {"name": "TEST", "value": "FOO"}
-            ],
+            "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [

@@ -71,3 +71,10 @@ $ make
 "preLaunchTask": "build" 生成子 task，可在里面编辑 gcc 命令等。
 "miDebuggerServerAddress" 配置服务器的地址和端口。
 ```
+
+### 示例
+- [指定命令行参数](recipe-01)
+- [指定环境变量](recipe-02)
+- [指定环境变量文件](recipe-03)
+- [指定gdbserver](recipe-04)
+
