@@ -8,4 +8,5 @@
 - [使用观察点](using_watchpoints)
 - [捕捉信号](catching_signals)
 - [捕获异常](catching_exceptions)
+- [反汇编代码](disassembling_the_code)
 

@@ -43,6 +43,7 @@
 - [使用观察点](advanced_debugging/using_watchpoints)
 - [捕捉信号](advanced_debugging/catching_signals)
 - [捕获异常](advanced_debugging/catching_exceptions)
+- [反汇编代码](advanced_debugging/disassembling_the_code)
 
 ### [多活动上下文中的调试](multiple_activities_context)
 - [调试多线程代码](multiple_activities_context/debugging_threaded_code)
